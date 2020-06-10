@@ -1,0 +1,81 @@
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 6rem;
+    width: 100vw;
+    background: rgba(29, 29, 29, 0.8);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    .header-data{
+        display: flex;
+        flex-direction: row;
+        
+        .header-data-content{
+            color: #a6a6a6;
+            font-weight: 500;
+            font-size: 1.4rem;
+            text-decoration: none;
+            min-width: 50px;
+            &:nth-child(1){
+                margin: 0 3vw;
+            }
+            &:nth-child(2){
+                margin: 0 3vw;
+            }
+            &:nth-child(3){
+                margin: 0 3vw;
+            }
+        }
+    }
+    .header-logo{
+        padding: 0 4vw;
+    }
+    .link-dae-home{
+        font-size: 1.1rem;
+        padding: 0 2vw;
+        min-width: 120px;
+        display: flex;
+        justify-content: center;
+        color: #a6a6a6;
+        text-decoration: none;
+        text-align: center;
+    }
+    .link-dae-app{
+        font-size: 1.1rem;
+        padding: 0 2vw;
+        min-width: 180px;
+        text-decoration: none;
+        color: #a6a6a6;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    .link-login{
+        color: #a6a6a6;
+        text-decoration: none;
+        display: flex;
+        min-width: 100px;
+        padding: 0 2vw;
+        font-size: 1.3rem;
+    }
+    .span{
+        font-size: 1.3rem;
+        display: flex;
+        justify-content: center;
+        .link-login{
+            color: #a6a6a6;
+            text-decoration: none;
+            display: flex;
+            min-width: 100px;
+            &:nth-child(1){
+                padding-right: 0;
+                justify-content: flex-end;
+            }
+            &:nth-child(2){
+                padding-left: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,117 @@
+.login-btn{
+    color: white;
+}
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    .login-logo{
+        width: 280px;
+        height: 65px;
+        margin-bottom: 40px;
+    }
+    .input-container{
+        margin-bottom: 1rem;
+        background: #404040;
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        color: white;
+        width: 550px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .selecter{
+            min-width: 100px;
+            font-size: 1.5rem;
+            font-weight: 400;
+            border-right: 1px solid #606060;
+            padding: 1rem 0.5rem;
+        }
+        .login-input-username{
+            font-size: 1.5rem;
+            padding: 1rem;
+            color: white;
+            border: none;
+            width: 450px;
+            outline: none;
+            background: #404040;
+        }
+        .login-input-password{
+            font-size: 1.5rem;
+            padding: 1rem;
+            color: white;
+            border: none;
+            width: 450px;
+            outline: none;
+            background: #404040;
+        }
+    }
+    .checkbox-container{
+        width: 550px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        input[id="checkbox"] + label {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #333333;
+            cursor: pointer;
+        }
+        input[id="checkbox"]:checked + label {
+            background: #404040;
+        }
+        .login-input-checkbox{
+            display: none;
+        }
+        .checkbox-text{
+            padding-left: 0.5rem;
+            color: #595959;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+    .login-btn{
+        background: #262626;
+        color: rgb(190, 191, 191);
+        border: none;
+        width: 550px;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0.5rem;
+        margin-top: 1.5rem;
+        outline: none;
+        cursor: pointer;
+    }
+    .login-others-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 3.5rem;
+        .login-find-username{
+            padding: 0 2rem;
+            text-decoration: none;
+            color: #6d6e6e;
+            font-size: 1.1rem;
+            border-right: 1px solid #6d6e6e;
+        }
+        .login-find-password{
+            padding: 0 2rem;
+            text-decoration: none;
+            color: #6d6e6e;
+            font-size: 1.1rem;
+        }
+        .login-signup-link{
+            padding: 0 2rem;
+            text-decoration: none;
+            color: #6d6e6e;
+            font-size: 1.1rem;
+            border-left: 1px solid #6d6e6e;
+        }
+    }
+}
