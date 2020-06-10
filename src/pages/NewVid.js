@@ -58,8 +58,23 @@ class NewVid extends React.Component{
             console.log(err)
         })
     }
+    @action saveInfo = () => {
+        sessionStorage.setItem("name", this.name)
+        sessionStorage.setItem("link", this.link)
+        sessionStorage.setItem("subject", this.subject)
+        sessionStorage.setItem("iframe", this.iframe)
+    }
 
     componentDidMount(){
+        if(sessionStorage.getItem("name")!==null)
+            this.name = sessionStorage.getItem("name")
+        
+        if(sessionStorage.getItem("link")!==null)
+            this.link = sessionStorage.getItem("link")
+        
+        if(sessionStorage.getItem("subject")!==null)
+            this.subject = sessionStorage.getItem("subject")
+            
         const { store } = this.props
         const ltoken = localStorage.getItem('token')
         const stoken = sessionStorage.getItem('token')
@@ -101,7 +116,7 @@ class NewVid extends React.Component{
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <DropDown placeholder="동영상 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.infgroupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <div className="newstudent-content-group-add-container">
-                        <Link to="/inf/group/new" className="newstudent-content-group-add">그룹 추가</Link>
+                        <Link to="/inf/group/new" onClick={() => this.saveInfo()} className="newstudent-content-group-add">그룹 추가</Link>
                     </div>
                     <div className="newstudent-content-btn-container">
                         <div className="newvid-content-btn" onClick={() => this.addVid()}>등록</div>
