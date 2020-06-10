@@ -1,0 +1,74 @@
+.grademanage-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .grademanage-content-container{
+        height: calc(100vh - 8rem);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5rem;
+        .grademanage-content-academy{
+            text-decoration: none;
+            color: #a6a6a6;
+            font-size: 2rem;
+            width: 270px;
+            background: #2d3c20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 270px;
+            margin-right: 0.5rem;
+            
+        }
+        .grademanage-content-individual{
+            text-decoration: none;
+            color: #a6a6a6;
+            background: #1d2944;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 270px;
+            font-size: 2rem;
+            width: 270px;
+            margin-left: 0.5rem;
+        }
+        .grademanage-content{
+            text-decoration: none;
+            color: #a6a6a6;
+            background: #262626;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 270px;
+            font-size: 1.5rem;
+            width: 270px;
+            margin-left: 0.5rem;
+        }
+    }
+}
+.inf-content{
+    text-decoration: none;
+    color: #a6a6a6;
+    background: #262626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    font-size: 1.5rem;
+    width: 270px;
+    margin-left: 0.5rem;
+    &:nth-child(1){
+        background: #4a3b0f;
+    }
+    &:nth-child(2){
+        background: #202f50;
+    }
+    &:nth-child(3){
+        background: #28371b;
+    }
+}
