@@ -74,8 +74,8 @@ class MatList extends React.Component{
     }
 
     componentDidMount(){
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
+        const ltoken = localStorage.getItem('admin_token')
+        const stoken = sessionStorage.getItem('admin_token')
         var token = ""
         if(stoken===null){
             token = ltoken
@@ -119,6 +119,7 @@ class MatList extends React.Component{
                             <DropDown placeholder="학년" option={store.schoolyear} className="test-content-dropdown-first" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                             <DropDown placeholder="그룹" option={store.infgroup} className="test-content-dropdown-second" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                             <div className="vid-header-search-btn" onClick={() => this.findMat(this.schoolyear, this.group, this.subject)}>검색</div>
+                            <Link className="vid-header-search-btn" to="/groups">그룹 관리</Link>
                         </div>
                         <div className="vid-header-right">
                             <Link to="/inf/mat/new" className="vid-register">자료 추가</Link>

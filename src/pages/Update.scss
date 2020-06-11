@@ -19,14 +19,14 @@
             width: 100%;
             min-width: calc(600px + 2rem);
             .userupdate-input{
-            background: #262626;
-            border: none;
-            font-size: 1.2rem;
-            padding: 1rem;
-            color: white;
-            outline: none;
-            width: calc(100% - 2rem);
-            min-width: 600px;
+                background: #262626;
+                border: none;
+                font-size: 1.2rem;
+                padding: 1rem;
+                color: white;
+                outline: none;
+                width: calc(100% - 2rem);
+                min-width: 600px;
             }
         }
         .userupdate-toggle{
@@ -56,6 +56,66 @@
             justify-content: center;
             min-width: 600px;
             .userupdate-btn{
+                width: 45%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid #807f80;
+                cursor: pointer;
+                &:nth-child(1){
+                    margin-right: 0.5rem;
+                }
+                &:nth-child(2){
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+}
+.groupupdate-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #a6a6a6;
+    width: 100vw;
+    height: 100vh;
+    .groupupdate-sticky{
+        height: calc(100% - 8rem);
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .groupupdate-inputs{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-width: calc(600px + 2rem);
+            .groupupdate-input{
+                background: #262626;
+                border: none;
+                font-size: 1.2rem;
+                padding: 1rem;
+                color: white;
+                outline: none;
+                width: calc(100% - 2rem);
+                min-width: 600px;
+            }
+        }
+        .groupupdate-btns{
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            padding-top: 3rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-width: 600px;
+            .groupupdate-btn{
                 width: 45%;
                 padding: 1rem;
                 display: flex;

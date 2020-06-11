@@ -31,18 +31,10 @@ class VidList extends React.Component{
     }
     @action getGroup = () => {
         const { store } = this.props
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
         const group = []
         axios.get("http://api.daeoebi.com/infgroups/", {
             headers: {
-                Authorization: "Token " + token
+                Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
@@ -76,8 +68,8 @@ class VidList extends React.Component{
     }
 
     componentDidMount(){
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
+        const ltoken = localStorage.getItem('admin_token')
+        const stoken = sessionStorage.getItem('admin_token')
         var token = ""
         if(stoken===null){
             token = ltoken
@@ -121,6 +113,7 @@ class VidList extends React.Component{
                             <DropDown placeholder="학년" option={store.schoolyear} className="test-content-dropdown-first" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                             <DropDown placeholder="그룹" option={store.infgroup} className="test-content-dropdown-second" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                             <div className="vid-header-search-btn" onClick={() => this.findVid(this.subject, this.schoolyear, this.group)}>검색</div>
+                            <Link className="vid-header-search-btn" to="/groups">그룹 관리</Link>
                         </div>
                         <div className="vid-header-right">
                             <Link to="/inf/vid/new" className="vid-register">동영상 추가</Link>

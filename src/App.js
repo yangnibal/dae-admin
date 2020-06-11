@@ -10,6 +10,8 @@ import MatList from './pages/MatList'
 import NewMat from './pages/NewMat'
 import NewVid from './pages/NewVid'
 import NewInfGroup from './pages/NewInfGroup';
+import InfGroupList from './pages/InfGroupList'
+import InfGroupUpdate from './pages/InfGroupUpdate'
  
 class App extends React.Component{
 	render(){
@@ -21,11 +23,13 @@ class App extends React.Component{
 					<Route exact path="/users" component={UserList}/>
 					<Route exact path="/users/:username/update" component={UserUpdate}/>
 					<Route exact path="/inf" component={Inf}/>
+					<Route exact path="/groups" component={InfGroupList}/>
 					<Route exact path="/inf/vid" component={VidList}/>
 					<Route exact path="/inf/mat" component={MatList}/>
 					<Route exact path="/inf/vid/new" component={NewVid}/>
 					<Route exact path="/inf/mat/new" component={NewMat}/>
-					<Route exact path="/inf/group/new" component={NewInfGroup}/>
+					<Route exact path="/groups/new" component={NewInfGroup}/>
+					<Route exact path="/groups/:groupname/update" component={InfGroupUpdate}/>
 				</Switch>
 			</BrowserRouter>
 		)

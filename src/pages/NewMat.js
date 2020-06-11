@@ -112,7 +112,7 @@ class NewMat extends React.Component{
                     <DropDown placeholder="자료 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <DropDown placeholder="자료 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <div className="newstudent-content-group-add-container">
-                        <Link to="/inf/group/new" onClick={() => this.saveInfo()} className="newstudent-content-group-add">그룹 추가</Link>
+                        <Link to="/groups/new" onClick={() => this.saveInfo()} className="newstudent-content-group-add">그룹 추가</Link>
                     </div>
                     <div className="newstudent-content-btn-container">
                         <div className="newvid-content-btn" onClick={() => this.addTest(this.name, this.link, this.subject, this.schoolyear, this.group)}>등록</div>
