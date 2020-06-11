@@ -19,6 +19,7 @@ class UserUpdate extends React.Component{
     @observable can_access_1 = false
     @observable can_access_2 = false
     @observable id = ""
+    @observable isPwChecked = true
 
     @action handleChange = (e) => {
         const { name, value } = e.target
