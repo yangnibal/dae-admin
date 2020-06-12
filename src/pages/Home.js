@@ -12,10 +12,12 @@ class Home extends React.Component{
         return(
             <div>
                 <Header/>
+                
                 <div className="home-content-container">
+                <Link to="/users" className="home-content big">[ 대외비 <span>&nbsp;사용자&nbsp;</span> 관리 ] 프로그램</Link>
                     <Link to="/inf" className="home-content">[ 대외비 <span>&nbsp;1급 정보&nbsp;</span> 자료 관리 ] 프로그램</Link>
-                    <Link to="/users" className="home-content">[ 대외비 <span>&nbsp;사용자&nbsp;</span> 관리 ] 프로그램</Link>
-                    <Link to="" className="home-content">[ 대외비 <span>&nbsp;교재 출력&nbsp;</span> 관리 ] 프로그램</Link>
+                    <Link to="/" className="home-content">[ 대외비 <span>&nbsp;성적 등급&nbsp;</span> 관리 ] 프로그램</Link>
+                    <Link to="" onClick={() => alert("오픈 준비중인 기능입니다.")} className="home-content">[ 대외비 <span>&nbsp;교재 출력&nbsp;</span> 관리 ] 프로그램</Link>
                 </div>
                 <div className="background-container">
                     <img src={Bg} alt={Bg} className="home-background"/>    

@@ -66,6 +66,20 @@ class VidList extends React.Component{
             console.log(err)
         })
     }
+    @action remove = (id) => {
+        const { store } = this.props
+        axios.delete("http://api.daeoebi.com/videos/" + id + "/", {
+            headers: {
+                Authorization: "Token " + store.getToken()
+            }
+        })
+        .then(res => {
+            window.location.reload()
+        })
+    }
+    @action update = (id) => {
+        this.props.history.push(`inf/vid/${id}/update`)
+    }
 
     componentDidMount(){
         const ltoken = localStorage.getItem('admin_token')
@@ -99,7 +113,9 @@ class VidList extends React.Component{
                 group={vid.group}
                 subject={vid.subject}
                 key={vid.id}
-                watchVid={() => {this.watchVid(vid.id)}}
+                watchVid={() => this.watchVid(vid.id)}
+                remove={() => this.remove(vid.id)}
+                update={() => this.update(vid.id)}
             />
         ))
         return(
@@ -125,7 +141,6 @@ class VidList extends React.Component{
                             <div className="vid-body-header-text">과목</div>
                             <div className="vid-body-header-text">추천 학년</div>
                             <div className="vid-body-header-text">그룹</div>
-                            <div className="vid-body-header-text">동영상 재생 시간</div>
                         </div>
                         <div className="vid-content-body">
                             {vidlist}

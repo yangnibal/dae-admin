@@ -133,16 +133,22 @@
                     justify-content: center;
                     &:nth-child(1){
                         margin-left: 5vw;
-                        width: 15vw;
+                        width: 12vw;
                     }
                     &:nth-child(2){
-                        width: 20vw;
+                        width: 12vw;
                     }
                     &:nth-child(3){
-                        width: 20vw;
+                        width: 15vw;
                     }
                     &:nth-child(4){
-                        width: 20vw;
+                        width: 15vw;
+                    }
+                    &:nth-child(5){
+                        width: 12vw;
+                    }
+                    &:nth-child(6){
+                        width: 12vw;
                     }
                 }
             }
@@ -155,9 +161,6 @@
         }
     }
 }
-
-
-
 .vid-container{
     display: flex;
     flex-direction: column;
@@ -383,7 +386,6 @@
         }
     }
 }
-
 .group-container{
     display: flex;
     flex-direction: column;

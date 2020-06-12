@@ -47,8 +47,8 @@ class MatList extends React.Component{
     }
     @action getGroup = () => {
         const { store } = this.props
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
+        const ltoken = localStorage.getItem('admin_token')
+        const stoken = sessionStorage.getItem('admin_token')
         var token = ""
         if(stoken===null){
             token = ltoken
@@ -71,6 +71,20 @@ class MatList extends React.Component{
         .catch(err => {
             console.log(err)
         })
+    }
+    @action remove = (id) => {
+        const { store } = this.props
+        axios.delete("http://api.daeoebi.com/materials/" + id + "/", {
+            headers: {
+                Authorization: "Token " + store.getToken()
+            }
+        })
+        .then(res => {
+            window.location.reload()
+        })
+    }
+    @action update = (id) => {
+        this.props.history.push(`inf/mat/${id}/update`)
     }
 
     componentDidMount(){
@@ -106,6 +120,8 @@ class MatList extends React.Component{
                 group={mat.group}
                 key={mat.id}
                 link={mat.link}
+                remove={() => this.remove(mat.id)}
+                update={() => this.update(mat.id)}
             />
         ))
         return(

@@ -15,22 +15,34 @@
         justify-content: center;
         &:nth-child(1){
             margin-left: 5vw;
-            width: 15vw;
+            width: 12vw;
         }
         &:nth-child(2){
-            width: 20vw;
+            width: 12vw;
         }
         &:nth-child(3){
-            width: 20vw;
+            width: 15vw;
         }
         &:nth-child(4){
-            width: 20vw;
+            width: 15vw;
+        }
+        &:nth-child(5){
+            width: 12vw;
+        }
+        &:nth-child(6){
+            width: 12vw;
+        }
+        .usercontent-checkbox{
+            width: 20px;
+            height: 20px;
+            border: 1px solid #a6a6a6;
+            color: white;
         }
     }
     .usercontent-btns{
         display: flex;
         justify-content: center;
-        width: 20vw;
+        width: 17vw;
         color: #a6a6a6;
         .usercontent-btn{
             &:nth-child(1){
@@ -75,14 +87,26 @@
             width: 14vw;
         }
         &:nth-child(5){
-            width: 16vw;
-        }
-        &:nth-child(6){
             margin-left: 4vw;
             padding: 0.5rem 2vw;
             background: #2e3c20;
             color: white;
             cursor: pointer;
+        }
+    }
+    .vidcontent-btns{
+        display: flex;
+        justify-content: center;
+        width: 17vw;
+        color: #a6a6a6;
+        .vidcontent-btn{
+            &:nth-child(1){
+                cursor: pointer;
+            }
+            &:nth-child(2){
+                cursor: pointer;
+                margin-right: 2vw;
+            }
         }
     }
 }
@@ -119,12 +143,26 @@
             width: 15vw;
         }
         &:nth-child(5){
-            margin-left: 4vw;
             padding: 0.5rem 2vw;
             background: #2e3c20;
             color: white;
             cursor: pointer;
             text-decoration: none;
+        }
+    }
+    .matcontent-btns{
+        display: flex;
+        justify-content: center;
+        width: 15vw;
+        color: #a6a6a6;
+        .matcontent-btn{
+            &:nth-child(1){
+                cursor: pointer;
+            }
+            &:nth-child(2){
+                cursor: pointer;
+                margin-right: 2vw;
+            }
         }
     }
 }

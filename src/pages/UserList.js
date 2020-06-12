@@ -79,6 +79,8 @@ class UserList extends React.Component{
                 key={user.id}
                 phone_number={user.phone_number}
                 email={user.email}
+                can_access_1={user.can_access_1}
+                can_access_2={user.can_access_2}
                 remove={() => this.remove(user.username)}
                 update={() => this.update(user.username)}
             />
@@ -103,6 +105,8 @@ class UserList extends React.Component{
                             <div className="user-content-body-header-text">아이디</div>
                             <div className="user-content-body-header-text">전화번호</div>
                             <div className="user-content-body-header-text">이메일</div>
+                            <div className="user-content-body-header-text">1급 정보</div>
+                            <div className="user-content-body-header-text">성적 등급 관리</div>
                         </div>
                         <div className="user-content-body">
                             {userlist}

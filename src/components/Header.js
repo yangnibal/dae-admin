@@ -19,7 +19,7 @@ const Header = () => {
             </Link>
             <div className="header-data">
                 <Link to="/inf" className="header-data-content">1급 정보</Link>
-                <Link to="/ac" className="header-data-content">성적 등급</Link>
+                <Link to="/" className="header-data-content">성적 등급</Link>
                 <Link to="/" className="header-data-content">교재 출력</Link>
             </div>
             <a href="https://blog.naver.com/dreamlearnforu" className="link-dae-home">대외비 블로그<br/>바로가기</a>
