@@ -30,14 +30,7 @@ class NewVid extends React.Component{
         this.group = e.value
     }
     @action addVid = () => {
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
+        const { store } = this.props
         axios.post("http://api.daeoebi.com/videos/", ({
             name: this.name,
             link: this.link,
@@ -47,7 +40,7 @@ class NewVid extends React.Component{
             grade: this.schoolyear
         }), {
             headers: {
-                Authorization: "Token " + token
+                Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
@@ -76,18 +69,10 @@ class NewVid extends React.Component{
             this.subject = sessionStorage.getItem("subject")
 
         const { store } = this.props
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
         const group = []
         axios.get("http://api.daeoebi.com/infgroups/", {
             headers: {
-                Authorization: "Token " + token
+                Authorization: "Token " + getToken()
             }
         })
         .then(res => {

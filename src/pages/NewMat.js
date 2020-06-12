@@ -26,14 +26,7 @@ class NewMat extends React.Component{
         this.group = e.value
     }
     @action addTest = (name, link, subject, grade, group) => {
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
+        const { store } = this.props
         axios.post("http://api.daeoebi.com/materials/", ({
             name: name,
             link: link,
@@ -42,7 +35,7 @@ class NewMat extends React.Component{
             group: group
         }), {
             headers: {
-                Authorization: "Token " + token
+                Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
@@ -73,18 +66,10 @@ class NewMat extends React.Component{
             this.subject = sessionStorage.getItem("subject")
         
         const { store } = this.props
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
         const group = []
         axios.get("http://api.daeoebi.com/infgroups/", {
             headers: {
-                Authorization: "Token " + token
+                Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
