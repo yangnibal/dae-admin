@@ -72,7 +72,7 @@ class NewVid extends React.Component{
         const group = []
         axios.get("http://api.daeoebi.com/infgroups/", {
             headers: {
-                Authorization: "Token " + getToken()
+                Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
