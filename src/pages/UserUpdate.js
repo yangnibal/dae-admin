@@ -55,7 +55,7 @@ class UserUpdate extends React.Component{
         })
         .catch(err => {
             alert("사용자 수정에 실패했습니다. 다시 시도해주시기 바랍니다.")
-            console.log(err)
+            
         })
     }
 

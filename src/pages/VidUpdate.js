@@ -1,86 +1,71 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { observable, action } from 'mobx'
-import Header from '../components/Header'
-import DropDown from '../components/DropDown'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { observer, inject } from 'mobx-react'
+import Header from '../components/Header';
+import DropDown from '../components/DropDown'
+import { observable, action } from 'mobx'
 
 @inject('store')
 @observer
-class NewVid extends React.Component{
+class VidUpdate extends React.Component{
 
-    @observable isClearable = false;
-    @observable isSearchable = true
-    @observable schoolyear = ""
-    @observable group = ""
     @observable name = ""
     @observable link = ""
     @observable iframe = ""
     @observable subject = ""
+    @observable grade = ""
+    @observable group = ""
 
     @action handleChange = (e) => {
         const { name, value } = e.target
         this[name] = value
-    }    
-    @action schoolyearChange = (e) => {
-        this.schoolyear = e.value
     }
-    @action infgroupChange = (e) => {
+    @action schoolyearChange = (e) => {
+        this.grade = e.value
+    }
+    @action groupChange = (e) => {
         this.group = e.value
     }
-    @action addVid = () => {
+    @action cancle = () => {
+        this.props.history.goBack()
+    }
+    @action update = () => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/videos/", ({
+        axios.patch("http://api.daeoebi.com/videos/" + this.id + "/", ({
             name: this.name,
             link: this.link,
             iframe: this.iframe,
             subject: this.subject,
-            group: this.group,
-            grade: this.schoolyear
+            grade: this.grade,
+            group: this.group
         }), {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
-            
-            this.props.history.push("/inf/vid")
+            this.props.history.goBack()
         })
-        .catch(err => {
+        .then(err => {
             
         })
-    }
-    @action saveInfo = () => {
-        sessionStorage.setItem("name", this.name)
-        sessionStorage.setItem("link", this.link)
-        sessionStorage.setItem("subject", this.subject)
-        sessionStorage.setItem("iframe", this.iframe)
     }
 
     componentDidMount(){
-        if(sessionStorage.getItem("name")!==null)
-            this.name = sessionStorage.getItem("name")
-        
-        if(sessionStorage.getItem("link")!==null)
-            this.link = sessionStorage.getItem("link")
-        
-        if(sessionStorage.getItem("subject")!==null)
-            this.subject = sessionStorage.getItem("subject")
-
         const { store } = this.props
-        const group = []
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        var path = window.location.href
+        this.id = path.split("/")[5]
+        store.getGroup()
+        axios.get("http://api.daeoebi.com/videos/" + this.id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
-            var data = res.data['results']
-            for(var i in data){
-                group.push({value: data[i]['name'], label: data[i]['name']})
-            }
-            store.infgroup = group
+            this.name = res.data['name']
+            this.link = res.data['link']
+            this.iframe = res.data['iframe']
+            this.subject = res.data['subject']
         })
         .catch(err => {
             
@@ -88,7 +73,7 @@ class NewVid extends React.Component{
     }
 
     render(){
-        const { store } = this.props 
+        const { store } = this.props
         return(
             <div className="newstudent-container">
                 <Header/>
@@ -99,12 +84,10 @@ class NewVid extends React.Component{
                     <input value={this.iframe} onChange={this.handleChange} name="iframe" className="newstudent-content-input" placeholder="동영상 iframe"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
-                    <DropDown placeholder="동영상 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.infgroupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
-                    <div className="newstudent-content-group-add-container">
-                        <Link to="/groups/new" onClick={() => this.saveInfo()} className="newstudent-content-group-add">그룹 추가</Link>
-                    </div>
+                    <DropDown placeholder="동영상 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <div className="newstudent-content-btn-container">
-                        <div className="newvid-content-btn" onClick={() => this.addVid()}>등록</div>
+                        <div className="newstudent-content-btn" onClick={() => this.cancle()}>취소</div>
+                        <div className="newstudent-content-btn" onClick={() => this.update()}>수정</div>
                     </div>
                 </div>
             </div>
@@ -112,4 +95,4 @@ class NewVid extends React.Component{
     }
 }
 
-export default NewVid
+export default VidUpdate

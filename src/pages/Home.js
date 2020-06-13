@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom'
 import './Home.scss'
 
 class Home extends React.Component{
-    componentDidMount(){
-        localStorage.setItem("checkedstudent", "")
-    }
     render(){
         return(
             <div>

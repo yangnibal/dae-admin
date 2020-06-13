@@ -12,6 +12,8 @@ import NewVid from './pages/NewVid'
 import NewInfGroup from './pages/NewInfGroup';
 import InfGroupList from './pages/InfGroupList'
 import InfGroupUpdate from './pages/InfGroupUpdate'
+import VidUpdate from './pages/VidUpdate'
+import MatUpdate from './pages/MatUpdate'
  
 class App extends React.Component{
 	render(){
@@ -30,6 +32,8 @@ class App extends React.Component{
 					<Route exact path="/inf/mat/new" component={NewMat}/>
 					<Route exact path="/groups/new" component={NewInfGroup}/>
 					<Route exact path="/groups/:groupname/update" component={InfGroupUpdate}/>
+					<Route exact path="/inf/vid/:vidid/update" component={VidUpdate}/>
+					<Route exact path="/inf/mat/:matid/update" component={MatUpdate}/>
 				</Switch>
 			</BrowserRouter>
 		)

@@ -31,7 +31,7 @@ class UserList extends React.Component{
             window.location.reload()
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action update = (username) => {
@@ -51,7 +51,7 @@ class UserList extends React.Component{
             this.users = res.data
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
 
@@ -66,7 +66,7 @@ class UserList extends React.Component{
             this.users = res.data
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
 

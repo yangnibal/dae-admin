@@ -46,4 +46,23 @@ export default class Store{
     @observable group = []
     @observable infgroup = []
 
+    @action getGroup = () => {
+        const group = []
+        axios.get("http://api.daeoebi.com/infgroups/", {
+            headers: {
+                Authorization: "Token " + this.getToken()
+            }
+        })
+        .then(res => {
+            var data = res.data['results']
+            for(var i in data){
+                group.push({value: data[i]['name'], label: data[i]['name']})
+            }
+            this.infgroup = group
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    
 }

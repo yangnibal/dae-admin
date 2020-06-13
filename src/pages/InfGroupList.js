@@ -23,10 +23,10 @@ class InfGroupList extends React.Component{
         })
         .then(res => {
             this.groups = res.data
-            console.log(res)
+            
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action handleChange = (e) => {
@@ -44,7 +44,7 @@ class InfGroupList extends React.Component{
             this.groups = res.data['results']
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action update = (id) => {

@@ -42,7 +42,7 @@ class MatList extends React.Component{
             this.mats = res.data
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action getGroup = () => {
@@ -69,7 +69,7 @@ class MatList extends React.Component{
             store.infgroup = group
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action remove = (id) => {
@@ -84,7 +84,7 @@ class MatList extends React.Component{
         })
     }
     @action update = (id) => {
-        this.props.history.push(`inf/mat/${id}/update`)
+        this.props.history.push(`/inf/mat/${id}/update`)
     }
 
     componentDidMount(){
@@ -106,7 +106,7 @@ class MatList extends React.Component{
             this.getGroup()
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
 

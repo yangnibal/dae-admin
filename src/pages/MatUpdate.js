@@ -1,83 +1,69 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { observable, action } from 'mobx'
-import Header from '../components/Header'
-import { Link } from 'react-router-dom'
-import DropDown from '../components/DropDown'
 import axios from 'axios'
-import './New.scss'
+import { observer, inject } from 'mobx-react'
+import Header from '../components/Header';
+import DropDown from '../components/DropDown'
+import { observable, action } from 'mobx'
 
 @inject('store')
 @observer
-class NewMat extends React.Component{
+class MatUpdate extends React.Component{
 
-    @observable isSearchable = true
-    @observable isClearable = false
     @observable name = ""
     @observable link = ""
     @observable subject = ""
-    @observable schoolyear = ""
+    @observable grade = ""
     @observable group = ""
-    
+    @observable id = ""
+
+    @action handleChange = (e) => {
+        const { name, value } = e.target
+        this[name] = value
+    }
     @action schoolyearChange = (e) => {
-        this.schoolyear = e.value
+        this.grade = e.value
     }
     @action groupChange = (e) => {
         this.group = e.value
     }
-    @action addTest = (name, link, subject, grade, group) => {
+    @action cancle = () => {
+        this.props.history.goBack()
+    }
+    @action update = () => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/materials/", ({
-            name: name,
-            link: link,
-            subject: subject,
-            grade: grade,
-            group: group
+        axios.patch("http://api.daeoebi.com/materials/" + this.id + "/", ({
+            name: this.name,
+            link: this.link,
+            subject: this.subject,
+            grade: this.grade,
+            group: this.group
         }), {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
-            this.props.history.push("/inf/mat")
+            this.props.history.goBack()
         })
         .catch(err => {
             
         })
     }
-    @action handleChange = (e) => {
-        const { name, value } = e.target
-        this[name] = value
-    }
-    @action saveInfo = () => {
-        sessionStorage.setItem("name", this.name)
-        sessionStorage.setItem("link", this.link)
-        sessionStorage.setItem("subject", this.subject)
-    }
 
     componentDidMount(){
-        if(sessionStorage.getItem("name")!==null)
-            this.name = sessionStorage.getItem("name")
-        
-        if(sessionStorage.getItem("link")!==null)
-            this.link = sessionStorage.getItem("link")
-        
-        if(sessionStorage.getItem("subject")!==null)
-            this.subject = sessionStorage.getItem("subject")
-        
         const { store } = this.props
-        const group = []
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        var path = window.location.href
+        this.id = path.split("/")[5]
+        store.getGroup()
+        axios.get("http://api.daeoebi.com/materials/" + this.id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
-            var data = res.data['results']
-            for(var i in data){
-                group.push({value: data[i]['name'], label: data[i]['name']})
-            }
-            store.infgroup = group
+            this.name = res.data['name']
+            this.link = res.data['link']
+            this.subject = res.data['subject']
         })
         .catch(err => {
             
@@ -96,11 +82,9 @@ class NewMat extends React.Component{
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="자료 관련 과목"/>
                     <DropDown placeholder="자료 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <DropDown placeholder="자료 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
-                    <div className="newstudent-content-group-add-container">
-                        <Link to="/groups/new" onClick={() => this.saveInfo()} className="newstudent-content-group-add">그룹 추가</Link>
-                    </div>
                     <div className="newstudent-content-btn-container">
-                        <div className="newvid-content-btn" onClick={() => this.addTest(this.name, this.link, this.subject, this.schoolyear, this.group)}>등록</div>
+                        <div className="newstudent-content-btn" onClick={() => this.cancle()}>취소</div>
+                        <div className="newstudent-content-btn" onClick={() => this.update()}>수정</div>
                     </div>
                 </div>
             </div>
@@ -108,4 +92,4 @@ class NewMat extends React.Component{
     }
 }
 
-export default NewMat
+export default MatUpdate

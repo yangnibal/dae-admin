@@ -135,3 +135,287 @@
         }
     }
 }
+.matupdate-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #a6a6a6;
+    width: 100vw;
+    height: 100vh;
+    .matupdate-sticky{
+        height: calc(100% - 8rem);
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .matupdate-inputs{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-width: calc(600px + 2rem);
+            .matupdate-input{
+                background: #262626;
+                border: none;
+                font-size: 1.2rem;
+                padding: 1rem;
+                color: white;
+                outline: none;
+                width: calc(100% - 2rem);
+                min-width: 600px;
+            }
+        }
+        .matupdate-btns{
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            padding-top: 3rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-width: 600px;
+            .matupdate-btn{
+                width: 45%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid #807f80;
+                cursor: pointer;
+                &:nth-child(1){
+                    margin-right: 0.5rem;
+                }
+                &:nth-child(2){
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+}
+.vidupdate-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #a6a6a6;
+    width: 100vw;
+    height: 100vh;
+    .vidupdate-sticky{
+        height: calc(100% - 8rem);
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .vidupdate-inputs{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-width: calc(600px + 2rem);
+            .vidupdate-input{
+                background: #262626;
+                border: none;
+                font-size: 1.2rem;
+                padding: 1rem;
+                color: white;
+                outline: none;
+                width: calc(100% - 2rem);
+                min-width: 600px;
+                margin-bottom: 0.3rem;
+                &::placeholder{
+                    font-weight: 400;
+                }
+            }
+            .vidupdate-dropdown{
+                color: white;
+                border: none;
+                width: 100%;
+                min-width: calc(600px + 2rem);
+                margin-bottom: 0.3rem;
+                outline: none;
+                .react-select__control{
+                    background: #262626;
+                    border: none;
+                    border-radius: 0;
+                    outline: none;
+                    box-shadow: none;
+                    padding: 0.7rem 0;
+                    .react-select__value-container{
+                        border: none;
+                        .react-select__placeholder{
+                            font-size: 1rem;
+                            color: #807f80;
+                            font-size: 1.4rem;
+                            margin-left: 0.5rem;
+                        }
+                        .react-select__single-value{
+                            font-size: 1rem;
+                            color: white;
+                            font-size: 1.4rem;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+                .react-select__menu{
+                    background: #727171;
+                }
+            }
+        }
+        .vidupdate-btns{
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            padding-top: 3rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-width: 600px;
+            .vidupdate-btn{
+                width: 45%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid #807f80;
+                cursor: pointer;
+                &:nth-child(1){
+                    margin-right: 0.5rem;
+                }
+                &:nth-child(2){
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.newstudent-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .newstudent-content-container{
+        height: calc(100% - 8rem);
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .newstudent-content-dropdown{
+            color: white;
+            border: none;
+            width: 100%;
+            min-width: calc(600px + 2rem);
+            margin-bottom: 0.3rem;
+            outline: none;
+            .react-select__control{
+                background: #262626;
+                border: none;
+                border-radius: 0;
+                outline: none;
+                box-shadow: none;
+                padding: 0.9rem 0;
+                .react-select__value-container{
+                    border: none;
+                    .react-select__placeholder{
+                        font-size: 1rem;
+                        color: #807f80;
+                        font-size: 1.4rem;
+                        margin-left: 0.5rem;
+                    }
+                    .react-select__single-value{
+                        font-size: 1rem;
+                        color: white;
+                        font-size: 1.4rem;
+                        margin-left: 0.5rem;
+                    }
+                }
+            }
+            .react-select__menu{
+                background: #727171;
+            }
+        }
+        .newstudent-content-title{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            color: white;
+            padding: 0 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 2rem;
+        }
+        .newstudent-content-input{
+            background: #262626;
+            border: none;
+            font-size: 1.4rem;
+            padding: 1rem;
+            color: white;
+            outline: none;
+            width: calc(100% - 2rem);
+            min-width: 600px;
+            margin-bottom: 0.3rem;
+            &::placeholder{
+                font-weight: 400;
+            } 
+        }
+        .newstudent-content-group-add-container{
+            width: 100%;
+            min-width: 600px;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+            .newstudent-content-group-add{
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border: 1px solid #807f80;
+                border-radius: 20px;
+                margin: 0 1rem;
+                text-decoration: none;
+            }
+        }
+        .newstudent-content-btn-container{
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            padding-top: 3rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-width: 600px;
+            .newstudent-content-btn{
+                width: 45%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid #807f80;
+                cursor: pointer;
+                &:nth-child(1){
+                    margin-right: 0.5rem;
+                }
+                &:nth-child(2){
+                    margin-left: 0.5rem;
+                }
+            }
+            .newvid-content-btn{
+                width: 100%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid #807f80;
+                cursor: pointer;
+            }
+        }
+    }
+}

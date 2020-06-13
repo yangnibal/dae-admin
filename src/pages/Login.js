@@ -27,7 +27,7 @@ class Login extends React.Component{
             password: this.password
         }))
         .then(res => {
-            console.log(res)
+            
             if(res.data==="not superuser"){
                 alert("관리자가 아닙니다")
             } else {

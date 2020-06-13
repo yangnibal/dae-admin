@@ -45,7 +45,7 @@ class VidList extends React.Component{
             store.infgroup = group
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action findVid = (subject, grade, group) => {
@@ -63,7 +63,7 @@ class VidList extends React.Component{
             this.vids = res.data
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
     @action remove = (id) => {
@@ -78,7 +78,7 @@ class VidList extends React.Component{
         })
     }
     @action update = (id) => {
-        this.props.history.push(`inf/vid/${id}/update`)
+        this.props.history.push(`/inf/vid/${id}/update`)
     }
 
     componentDidMount(){
@@ -100,7 +100,7 @@ class VidList extends React.Component{
             this.getGroup()
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
 

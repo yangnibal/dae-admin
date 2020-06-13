@@ -50,7 +50,7 @@ class InfGroupUpdate extends React.Component{
             this.name = res.data['name']
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }
 
