@@ -40,17 +40,14 @@ class InfGroupUpdate extends React.Component{
     componentDidMount(){
         const { store } = this.props
         var path = window.location.href
-        path = decodeURI(path.split("/")[4])
-        axios.post("http://api.daeoebi.com/infgroups/findgroup/", ({
-            name: path
-        }), {
+        this.id = path.split("/")[4]
+        axios.get("http://api.daeoebi.com/infgroups/" + id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
             this.name = res.data['name']
-            this.id = res.data['id']
         })
         .catch(err => {
             console.log(err)

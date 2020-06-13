@@ -35,7 +35,6 @@ class InfGroupList extends React.Component{
     }
     @action getGroup = () => {
         const { store } = this.props
-        const group = []
         axios.get("http://api.daeoebi.com/infgroups/", {
             headers: {
                 Authorization: "Token " + store.getToken()
@@ -48,14 +47,12 @@ class InfGroupList extends React.Component{
             console.log(err)
         })
     }
-    @action update = (name) => {
-        this.props.history.push(`/groups/${name}/update`)
+    @action update = (id) => {
+        this.props.history.push(`/groups/${id}/update`)
     }
-    @action remove = (name) => {
+    @action remove = (id) => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/infgroups/delete/", ({
-            name: name
-        }), {
+        axios.delete("http://api.daeoebi.com/infgroups/" + id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -76,9 +73,9 @@ class InfGroupList extends React.Component{
         const grouplist = this.groups.map(group => (
             <InfGroupContent
                 name={group.name}
-                key={group.name}
-                update={() => this.update(group.name)}
-                remove={() => this.remove(group.name)}
+                key={group.id}
+                update={() => this.update(group.id)}
+                remove={() => this.remove(group.id)}
             />
         ))
         return(
