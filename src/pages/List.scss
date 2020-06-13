@@ -407,32 +407,52 @@
             height: 4rem;
             color: white;
             width: calc(100% - 24rem);
-            .group-header-title{
-                font-size: 1.6rem;
-                min-width: 130px;
-            }
-            .group-header-search{
-                min-height: 2rem;
-                width: 8rem;
-                border: 1px solid #a6a6a6;
-                font-size: 1rem;
-                outline: none;
-                margin-left: 3rem;
-                background: black;
-                color: white;
-                padding: 0 0.5rem;
-            }
-            .group-header-btn{
-                background: #404040;
-                color: #a8a8a8;
+            .group-header-left{
+                width: 80%;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                height: calc(2rem - 1rem);
-                padding: 0.5rem 1.5rem;
-                margin-left: 0.5rem;
-                cursor: pointer;
-                min-width: 40px;
+                flex-direction: row;
+                justify-content: flex-start;
+                .group-header-title{
+                    font-size: 1.6rem;
+                    min-width: 130px;
+                }
+                .group-header-search{
+                    min-height: 2rem;
+                    width: 8rem;
+                    border: 1px solid #a6a6a6;
+                    font-size: 1rem;
+                    outline: none;
+                    margin-left: 3rem;
+                    background: black;
+                    color: white;
+                    padding: 0 0.5rem;
+                }
+                .group-header-btn{
+                    background: #404040;
+                    color: #a8a8a8;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: calc(2rem - 1rem);
+                    padding: 0.5rem 1.5rem;
+                    margin-left: 0.5rem;
+                    cursor: pointer;
+                    min-width: 40px;
+                }
+            }
+            .group-header-right{
+                width: 20%;
+                display: flex;
+                justify-content: flex-end;
+                .group-new{
+                    border: 1px solid #a6a6a6;
+                    border-radius: 20px;
+                    color: white;
+                    font-size: 1.2rem;
+                    padding: 0.2rem 1.5rem;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
             }
         }
         .group-body{
