@@ -16,7 +16,7 @@ class InfGroupUpdate extends React.Component{
         const { name, value } = e.target
         this[name] = value
     }
-    @action cancel = () => {
+    @action cancle = () => {
         this.props.history.goBack()
     }
     @action update = () => {
@@ -41,7 +41,7 @@ class InfGroupUpdate extends React.Component{
         const { store } = this.props
         var path = window.location.href
         this.id = path.split("/")[4]
-        axios.get("http://api.daeoebi.com/infgroups/" + id + "/", {
+        axios.get("http://api.daeoebi.com/infgroups/" + this.id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
