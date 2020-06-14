@@ -2,16 +2,16 @@
   font-family: 'yun'; 
   font-style: normal;
   font-weight: 500;
-  src: url(./fonts/윤고딕320.ttf) format('truetype'); 
+  src: url(./fonts/윤고딕320.woff) format('woff'); 
 }
 @font-face { font-family: 'yun'; 
   font-style: bold;
-  src: url(./fonts/윤고딕350.ttf) format('truetype'); 
+  src: url(./fonts/윤고딕350.woff) format('woff'); 
 }
 @font-face { font-family: 'yun'; 
   font-style: lighter;
-  src: url(./fonts/윤고딕310.ttf) 
-  format('truetype'); 
+  src: url(./fonts/윤고딕310.woff) 
+  format('woff'); 
 }
 
 body {
