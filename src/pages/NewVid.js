@@ -31,7 +31,7 @@ class NewVid extends React.Component{
     }
     @action addVid = () => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/videos/", ({
+        axios.post("https://api.daeoebi.com/videos/", ({
             name: this.name,
             link: this.link,
             iframe: this.iframe,
@@ -70,7 +70,7 @@ class NewVid extends React.Component{
 
         const { store } = this.props
         const group = []
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        axios.get("https://api.daeoebi.com/infgroups/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

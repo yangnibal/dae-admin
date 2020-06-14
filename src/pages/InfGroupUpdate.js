@@ -21,7 +21,7 @@ class InfGroupUpdate extends React.Component{
     }
     @action update = () => {
         const { store } = this.props
-        axios.put("http://api.daeoebi.com/infgroups/" + this.id + "/", ({
+        axios.put("https://api.daeoebi.com/infgroups/" + this.id + "/", ({
             name: this.name,
         }), {
             headers: {
@@ -41,7 +41,7 @@ class InfGroupUpdate extends React.Component{
         const { store } = this.props
         var path = window.location.href
         this.id = path.split("/")[4]
-        axios.get("http://api.daeoebi.com/infgroups/" + this.id + "/", {
+        axios.get("https://api.daeoebi.com/infgroups/" + this.id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

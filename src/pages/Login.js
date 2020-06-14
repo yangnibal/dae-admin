@@ -22,7 +22,7 @@ class Login extends React.Component{
         this[name] = checked
     }
     @action superuserLogin = () => {
-        axios.post("http://api.daeoebi.com/users/loginsuperuser/", ({
+        axios.post("https://api.daeoebi.com/users/loginsuperuser/", ({
             username: this.username,
             password: this.password
         }))
@@ -47,7 +47,7 @@ class Login extends React.Component{
 
     componentDidMount(){
         const { store } = this.props
-        axios.get("http://api.daeoebi.com/users/logout", {
+        axios.get("https://api.daeoebi.com/users/logout", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

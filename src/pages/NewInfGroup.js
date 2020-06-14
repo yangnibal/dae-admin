@@ -19,7 +19,7 @@ class NewInfGroup extends React.Component{
     }
     @action addGroup = (name, add_more) => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/infgroups/", ({
+        axios.post("https://api.daeoebi.com/infgroups/", ({
             name: name
         }), {
             headers: {

@@ -32,7 +32,7 @@ class VidList extends React.Component{
     @action getGroup = () => {
         const { store } = this.props
         const group = []
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        axios.get("https://api.daeoebi.com/infgroups/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -50,7 +50,7 @@ class VidList extends React.Component{
     }
     @action findVid = (subject, grade, group) => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/videos/findvid/", ({
+        axios.post("https://api.daeoebi.com/videos/findvid/", ({
             grade: grade,
             subject: subject,
             group: group
@@ -68,7 +68,7 @@ class VidList extends React.Component{
     }
     @action remove = (id) => {
         const { store } = this.props
-        axios.delete("http://api.daeoebi.com/videos/" + id + "/", {
+        axios.delete("https://api.daeoebi.com/videos/" + id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -90,7 +90,7 @@ class VidList extends React.Component{
         } else {
             token = stoken
         }
-        axios.get("http://api.daeoebi.com/videos", {
+        axios.get("https://api.daeoebi.com/videos", {
             headers: {
                 Authorization: "Token " + token
             }

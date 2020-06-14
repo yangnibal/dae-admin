@@ -15,7 +15,7 @@ class VidDetail extends React.Component{
         const { store } = this.props
         var path = window.location.href
         path = path.split("/")[5]
-        axios.get("http://api.daeoebi.com/videos/" + path + "/", {
+        axios.get("https://api.daeoebi.com/videos/" + path + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

@@ -15,7 +15,7 @@ class InfGroupList extends React.Component{
 
     @action findGroup = () => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/infgroups/findgroup/", ({
+        axios.post("https://api.daeoebi.com/infgroups/findgroup/", ({
             name: this.name
         }), {
             headers: {
@@ -36,7 +36,7 @@ class InfGroupList extends React.Component{
     }
     @action getGroup = () => {
         const { store } = this.props
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        axios.get("https://api.daeoebi.com/infgroups/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -53,7 +53,7 @@ class InfGroupList extends React.Component{
     }
     @action remove = (id) => {
         const { store } = this.props
-        axios.delete("http://api.daeoebi.com/infgroups/" + id + "/", {
+        axios.delete("https://api.daeoebi.com/infgroups/" + id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

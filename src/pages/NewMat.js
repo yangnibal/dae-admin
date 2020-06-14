@@ -27,7 +27,7 @@ class NewMat extends React.Component{
     }
     @action addTest = (name, link, subject, grade, group) => {
         const { store } = this.props
-        axios.post("http://api.daeoebi.com/materials/", ({
+        axios.post("https://api.daeoebi.com/materials/", ({
             name: name,
             link: link,
             subject: subject,
@@ -67,7 +67,7 @@ class NewMat extends React.Component{
         
         const { store } = this.props
         const group = []
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        axios.get("https://api.daeoebi.com/infgroups/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

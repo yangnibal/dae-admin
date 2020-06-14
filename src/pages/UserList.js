@@ -20,7 +20,7 @@ class UserList extends React.Component{
     }
     @action remove = (username) => {
         const { store } = this.props;
-        axios.post("http://api.daeoebi.com/users/deleteuser/", ({
+        axios.post("https://api.daeoebi.com/users/deleteuser/", ({
             username: username
         }), {
             headers: {
@@ -39,7 +39,7 @@ class UserList extends React.Component{
     }
     @action findUser = () => {
         const { store } = this.props;
-        axios.post("http://api.daeoebi.com/users/finduser/", ({
+        axios.post("https://api.daeoebi.com/users/finduser/", ({
             name: this.name,
             username: this.username
         }), {
@@ -57,7 +57,7 @@ class UserList extends React.Component{
 
     componentDidMount(){
         const { store } = this.props 
-        axios.get("http://api.daeoebi.com/users/", {
+        axios.get("https://api.daeoebi.com/users/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }

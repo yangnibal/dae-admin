@@ -45,7 +45,7 @@ class UserUpdate extends React.Component{
         } else if(this.newpassword!==""&&this.isPwChecked===false){
             alert("비밀번호 확인을 해 주시기 바랍니다.")
         }
-        axios.patch("http://api.daeoebi.com/users/" + this.id + "/", formData, {
+        axios.patch("https://api.daeoebi.com/users/" + this.id + "/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -63,7 +63,7 @@ class UserUpdate extends React.Component{
         const { store } = this.props
         var path = window.location.href
         this.path = path.split("/")[4]
-        axios.post("http://api.daeoebi.com/users/getuserinfo/", ({
+        axios.post("https://api.daeoebi.com/users/getuserinfo/", ({
             username: this.path
         }),{
             headers: {

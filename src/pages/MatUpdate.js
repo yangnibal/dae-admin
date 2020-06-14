@@ -31,7 +31,7 @@ class MatUpdate extends React.Component{
     }
     @action update = () => {
         const { store } = this.props
-        axios.patch("http://api.daeoebi.com/materials/" + this.id + "/", ({
+        axios.patch("https://api.daeoebi.com/materials/" + this.id + "/", ({
             name: this.name,
             link: this.link,
             subject: this.subject,
@@ -55,7 +55,7 @@ class MatUpdate extends React.Component{
         var path = window.location.href
         this.id = path.split("/")[5]
         store.getGroup()
-        axios.get("http://api.daeoebi.com/materials/" + this.id + "/", {
+        axios.get("https://api.daeoebi.com/materials/" + this.id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
