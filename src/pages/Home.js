@@ -17,6 +17,7 @@ class Home extends React.Component{
                 <div className="background-container">
                     <img src={Bg} alt={Bg} className="home-background"/>    
                 </div>
+                <a href="https://www.daeoebi.com" className="admin-btn">user</a>
             </div>
         )
     }

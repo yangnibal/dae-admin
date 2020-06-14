@@ -28,8 +28,8 @@
         background: rgb(31, 31, 31);
         opacity: 0.8;
         text-decoration: none;
-        width: 350px;
-        height: 350px;
+        width: 330px;
+        height: 330px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -45,7 +45,7 @@
             margin-left: 0.5rem;
         }
         .span-1{
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: bold;
         }
         span{
@@ -53,4 +53,17 @@
             font-weight: normal;
         }
     }
+}
+.admin-btn{
+    color: white;
+    border: 2px solid #a6a6a6;
+    font-weight: 600;
+    font-size: 1.5rem;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
 }
