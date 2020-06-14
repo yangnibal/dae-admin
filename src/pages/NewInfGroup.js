@@ -18,19 +18,12 @@ class NewInfGroup extends React.Component{
         this.name = ""
     }
     @action addGroup = (name, add_more) => {
-        const ltoken = localStorage.getItem('token')
-        const stoken = sessionStorage.getItem('token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
+        const { store } = this.props
         axios.post("http://api.daeoebi.com/infgroups/", ({
             name: name
         }), {
             headers: {
-                Authorization: "Token "+token
+                Authorization: "Token "+store.getToken()
             }
         })
         .then(res => {

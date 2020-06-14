@@ -11,7 +11,7 @@ class Inf extends React.Component{
                 <div className="grademanage-content-container">
                     <Link className="inf-content" to="/inf/vid">동영상 자료</Link>
                     <Link className="inf-content" to="/inf/mat">인터넷 검색 자료</Link>
-                    <Link className="inf-content" onClick={() => alert("오픈 준비중인 기능입니다.")}>파일 출력 가능 자료</Link>
+                    <Link className="inf-content" onClick={() => alert("오픈 준비중인 기능입니다.")}>첨부 파일 자료</Link>
                 </div>
             </div>
         )
