@@ -36,6 +36,7 @@ class App extends React.Component{
 					<Route exact path="/inf/vid/:vidid/update" component={VidUpdate}/>
 					<Route exact path="/inf/mat/:matid/update" component={MatUpdate}/>
 					<Route exact path="/inf/vid/:vidid" component={VidDetail}/>
+					
 				</Switch>
 			</BrowserRouter>
 		)

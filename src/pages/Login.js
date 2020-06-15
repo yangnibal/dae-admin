@@ -46,12 +46,8 @@ class Login extends React.Component{
     }
 
     componentDidMount(){
-        const { store } = this.props
-        axios.get("https://api.daeoebi.com/users/logout", {
-            headers: {
-                Authorization: "Token " + store.getToken()
-            }
-        })
+        localStorage.clear()
+        sessionStorage.clear()
     }
 
     render(){
@@ -68,7 +64,7 @@ class Login extends React.Component{
                 </div>
                 <div className="checkbox-container">
                     <input checked={this.saveId} onChange={this.handleCheckboxChange} name="saveId" id="checkbox" type="checkbox" className="login-input-checkbox"/>
-                    <label htmlFor="checkbox"/>
+                    <label htmlFor="checkbox">{this.saveId===true ? "✓" : null}</label>
                     <span className="checkbox-text">아이디 저장</span>
                 </div>
                 <div className="login-btn" onClick={() => this.superuserLogin()}>로그인</div>
