@@ -109,8 +109,10 @@ class FileList extends React.Component{
                         <div className="file-body-content">
                             {filelist}
                         </div>
-                        <Link to="/inf/vid" className="file-footer-content"></Link>
-                        <Link to="/inf/mat" className="file-footer-content"></Link>
+                        <div className="file-footer">
+                            <Link to="/inf/vid" className="file-footer-content">[동영상 자료]이동</Link>
+                            <Link to="/inf/mat" className="file-footer-content">[인터넷 검색 자료]이동</Link>
+                        </div>
                     </div>
                 </div>
             </div>
