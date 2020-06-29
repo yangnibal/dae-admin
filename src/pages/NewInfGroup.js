@@ -3,8 +3,9 @@ import './New.scss'
 import Header from '../components/Header';
 import axios from 'axios'
 import { observable, action } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
+@inject('store')
 @observer
 class NewInfGroup extends React.Component{
 

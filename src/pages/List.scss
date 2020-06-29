@@ -344,20 +344,20 @@
                     display: flex;
                     justify-content: center;
                     &:nth-child(1){
-                        margin-left: 7vw;
+                        margin-left: 5vw;
                         width: 14vw;
                     }
                     &:nth-child(2){
-                        width: 14vw;
+                        width: 12vw;
                     }
                     &:nth-child(3){
-                        width: 14vw;
+                        width: 12vw;
                     }
                     &:nth-child(4){
-                        width: 14vw;
+                        width: 12vw;
                     }
                     &:nth-child(5){
-                        width: 16vw;
+                        width: 10vw;
                     }
                 }
                 .mat-body-header-text{
@@ -484,6 +484,150 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+.file-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    min-height: 100vh;
+    .file-sticky{
+        width: 100vw;
+        min-height: calc(100vh - 8rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .file-header{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 0 12rem;
+            padding-top: 3rem;
+            height: 4rem;
+            color: white;
+            width: calc(100% - 24rem);
+            .file-header-left{
+                width: 70%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                .file-header-title{
+                    font-size: 1.6rem;
+                    min-width: 130px;
+                }
+                .file-header-dropdown{
+                    color: #a6a6a6;
+                    cursor: pointer;
+                    outline: none;
+                    font-size: 1rem;
+                    border: 1px solid #a6a6a6;
+                    min-height: 2rem;
+                    min-width: 5.5rem;
+                    &:nth-child(2){
+                        margin-left: 2rem;
+                    }
+                    &:nth-child(3){
+                        margin-left: 0.5rem;
+                    }
+                    &:nth-child(4){
+                        margin-left: 0.5rem;
+                    }
+                    .react-select__control{
+                        background: black;
+                        outline: none;
+                        border: none;
+                        min-height: 1.5rem;
+                        box-shadow: none;
+                        .react-select__value-container{
+                            border: none;
+                            .react-select__single-value{
+                                font-size: 1rem;
+                                color: white;
+                            }
+                        }
+                        .react-select__indicators{
+                            border: none;
+                            padding: 0;
+                            .react-select__indicator-separator{
+                                display: none;
+                            }
+                            .react-select__indicator{
+                                padding-top: 0;
+                                padding-bottom: 0;
+                            }
+                        }
+                    }
+                }
+                .file-header-search-btn{
+                    background: #404040;
+                    color: #a8a8a8;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: calc(2rem - 1rem);
+                    padding: 0.5rem 1.5rem;
+                    margin-left: 0.5rem;
+                    cursor: pointer;
+                    min-width: 40px;
+                    text-decoration: none;   
+                }
+            }
+            .file-header-right{
+                width: 30%;
+                display: flex;
+                justify-content: flex-end;
+                .file-register{
+                    border: 1px solid #a6a6a6;
+                    border-radius: 20px;
+                    color: white;
+                    font-size: 1.2rem;
+                    padding: 0.2rem 1.5rem;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+        }
+        .file-body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            .file-body-header{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                background: #262626;
+                width: 100%;
+                height: 3rem;
+                .file-body-header-text{
+                    color: #a6a6a6;
+                    font-size: 1.2rem;
+                    display: flex;
+                    justify-content: center;
+                    &:nth-child(1){
+                        margin-left: 10vw;
+                        width: 15vw;
+                    }
+                    &:nth-child(2){
+                        width: 15vw;
+                    }
+                    &:nth-child(3){
+                        width: 10vw;
+                    }
+                    &:nth-child(4){
+                        width: 20vw;
+                    }
+                }
+            }
+            .file-body-content{
+                width: 100%;
             }
         }
     }

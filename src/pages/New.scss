@@ -239,3 +239,131 @@
         }
     }
 }
+
+.newfile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    .newfile-sticky{
+        width: 50%;
+        height: calc(100% - 8rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .newfile-input{
+            background: #262626;
+            border: none;
+            font-size: 1.4rem;
+            padding: 1rem;
+            color: white;
+            outline: none;
+            width: calc(100% - 2rem);
+            min-width: 600px;
+            &::placeholder{
+                font-weight: 400;
+            } 
+            margin-bottom: 0.5rem;
+        }
+        .newfile-dropdown{
+            color: white;
+            border: none;
+            width: 100%;
+            min-width: calc(600px + 2rem);
+            margin-bottom: 0.3rem;
+            outline: none;
+            .react-select__control{
+                background: #262626;
+                border: none;
+                border-radius: 0;
+                outline: none;
+                box-shadow: none;
+                padding: 0.7rem 0;
+                .react-select__value-container{
+                    border: none;
+                    .react-select__placeholder{
+                        font-size: 1rem;
+                        color: #807f80;
+                        font-size: 1.4rem;
+                        margin-left: 0.5rem;
+                    }
+                    .react-select__single-value{
+                        font-size: 1rem;
+                        color: white;
+                        font-size: 1.4rem;
+                        margin-left: 0.5rem;
+                    }
+                }
+            }
+            .react-select__menu{
+                background: #727171;
+            }
+        }
+        .newfile-addgroup-btn{
+            width: 100%;
+            min-width: 600px;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+            .newfile-addgroup{
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border: 1px solid #807f80;
+                border-radius: 20px;
+                margin: 0 1rem;
+                text-decoration: none;
+            }
+        }
+        .newfile-selectfile{
+            background: #28371b;
+            &:hover{
+                background: #151d0e;
+            }
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(90% + 1rem);
+            font-size: 1.5rem;
+            padding: 1rem;
+            min-width: calc(600px - 2rem);
+            margin-top: 3rem;
+        }
+        .newfile-btn{
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-width: 600px;
+            .updatefile-btns{
+                width: 45%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid rgb(128, 127, 128);
+                cursor: pointer;
+            }
+            .newfile-btns{
+                width: 100%;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5rem;
+                border: 1px solid rgb(128, 127, 128);
+                cursor: pointer;
+
+            }
+        }
+    }
+}

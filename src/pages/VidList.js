@@ -66,6 +66,9 @@ class VidList extends React.Component{
             
         })
     }
+    @action watchSavedVid = (id) => {
+        this.props.history.push(`/inf/savedvid/${id}`)
+    }
     @action remove = (id) => {
         const { store } = this.props
         axios.delete("https://api.daeoebi.com/videos/" + id + "/", {
@@ -82,22 +85,16 @@ class VidList extends React.Component{
     }
 
     componentDidMount(){
-        const ltoken = localStorage.getItem('admin_token')
-        const stoken = sessionStorage.getItem('admin_token')
-        var token = ""
-        if(stoken===null){
-            token = ltoken
-        } else {
-            token = stoken
-        }
+        const { store } = this.props
+        this.getGroup()
         axios.get("https://api.daeoebi.com/videos", {
             headers: {
-                Authorization: "Token " + token
+                Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
             this.vids = res.data['results']
-            this.getGroup()
+            
         })
         .catch(err => {
             
@@ -112,6 +109,7 @@ class VidList extends React.Component{
                 grade={vid.grade}
                 group={vid.group}
                 subject={vid.subject}
+                time={vid.time}
                 key={vid.id}
                 watchVid={() => this.watchVid(vid.id)}
                 remove={() => this.remove(vid.id)}
@@ -141,8 +139,15 @@ class VidList extends React.Component{
                             <div className="vid-body-header-text">과목</div>
                             <div className="vid-body-header-text">추천 학년</div>
                             <div className="vid-body-header-text">그룹</div>
+                            <div className="vid-body-header-text">재생 시간</div>
                         </div>
                         <div className="vid-content-body">
+                            <VidContent name="대외비원패스오티" grade="전체" group="비교과" subject="대외비1PASS" time="05:43" watchVid={() => this.watchSavedVid("ot")}/>
+                            <VidContent name="1강 평가의 본질" grade="전체" group="비교과" subject="대외비1PASS" time="46:51" watchVid={() => this.watchSavedVid("1")}/>
+                            <VidContent name="2강 성적표 속의 비밀" grade="전체" group="비교과" subject="대외비1PASS" time="42:32" watchVid={() => this.watchSavedVid("2")}/>
+                            <VidContent name="3강 슬기로운 학교생활 초안" grade="전체" group="비교과" subject="대외비1PASS" time="33:22" watchVid={() => this.watchSavedVid("3")}/>
+                            <VidContent name="4강 학원 시간표 전략" grade="전체" group="비교과" subject="대외비1PASS" time="36:39" watchVid={() => this.watchSavedVid("4")}/>
+                            <VidContent name="5강 수학학습전략" grade="전체" group="비교과" subject="대외비1PASS" time="37:47" watchVid={() => this.watchSavedVid("5")}/>
                             {vidlist}
                         </div>
                     </div>

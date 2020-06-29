@@ -15,6 +15,11 @@ import InfGroupUpdate from './pages/InfGroupUpdate'
 import VidUpdate from './pages/VidUpdate'
 import MatUpdate from './pages/MatUpdate'
 import VidDetail from './pages/VidDetail'
+import NewFile from './pages/NewFile'
+import FileList from './pages/FileList'
+import FileDetail from './pages/FileDetail'
+import FileUpdate from './pages/FileUpdate'
+import SavedVidDetail from './pages/SavedVidDetail'
  
 class App extends React.Component{
 	render(){
@@ -36,7 +41,11 @@ class App extends React.Component{
 					<Route exact path="/inf/vid/:vidid/update" component={VidUpdate}/>
 					<Route exact path="/inf/mat/:matid/update" component={MatUpdate}/>
 					<Route exact path="/inf/vid/:vidid" component={VidDetail}/>
-					
+					<Route exact path="/inf/file" component={FileList}/>
+					<Route exact path="/inf/file/new" component={NewFile}/>
+					<Route exact path="/inf/file/:fileid" component={FileDetail}/>
+					<Route exact path="/inf/file/:fileid/update" component={FileUpdate}/>
+					<Route exact path="/inf/savedvid/:savedvidname" component={SavedVidDetail}/>
 				</Switch>
 			</BrowserRouter>
 		)

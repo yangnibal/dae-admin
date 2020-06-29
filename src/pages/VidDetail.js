@@ -2,14 +2,13 @@ import React from 'react'
 import Header from '../components/Header'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 @inject('store')
 @observer
 class VidDetail extends React.Component{
 
-    @observable iframe = ""
+    @observable url = ""
 
     componentDidMount(){
         const { store } = this.props
@@ -21,7 +20,7 @@ class VidDetail extends React.Component{
             }
         })
         .then(res => {
-            this.iframe = res.data['iframe']
+            this.url = res.data['video']
         })
         .catch(err => {
                     
@@ -32,8 +31,11 @@ class VidDetail extends React.Component{
         return(
             <div style={{width: "100vw", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                 <Header/>
-                <div style={{width: "100vw", height: "calc(100vh - 8rem)", display: "flex", justifyContent: "center", alignItems: "center"}} dangerouslySetInnerHTML={{__html: this.iframe}}></div>
-                <Link to="/inf/vid" style={{position: "fixed", bottom: "30px", left: "30px", color: "white", border: "1px solid white", textDecoration: "none", width: "150px", height: "50px", fontSize: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center"}}>뒤로가기</Link>
+                <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100vw"}}>
+                    <video autoPlay controlsList="nodownload" controls height="720" width="1280" style={{outline: "none"}}>
+                        <source src={this.url} type="video/mp4"/>
+                    </video>
+                </div>
             </div>
         )
     }

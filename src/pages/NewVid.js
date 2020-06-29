@@ -15,9 +15,10 @@ class NewVid extends React.Component{
     @observable schoolyear = ""
     @observable group = ""
     @observable name = ""
-    @observable link = ""
-    @observable iframe = ""
+    @observable time = ""
     @observable subject = ""
+    @observable vid = []
+    @observable isFilein = false
 
     @action handleChange = (e) => {
         const { name, value } = e.target
@@ -33,8 +34,7 @@ class NewVid extends React.Component{
         const { store } = this.props
         axios.post("https://api.daeoebi.com/videos/", ({
             name: this.name,
-            link: this.link,
-            iframe: this.iframe,
+            time: this.time,
             subject: this.subject,
             group: this.group,
             grade: this.schoolyear
@@ -53,17 +53,17 @@ class NewVid extends React.Component{
     }
     @action saveInfo = () => {
         sessionStorage.setItem("name", this.name)
-        sessionStorage.setItem("link", this.link)
-        sessionStorage.setItem("subject", this.subject)
+        sessionStorage.setItem("time", this.time)
         sessionStorage.setItem("iframe", this.iframe)
+    }
+    @action fileChange = (e) => {
+        this.vid = e.target.files[0]
+        this.isFilein = !this.isFilein
     }
 
     componentDidMount(){
         if(sessionStorage.getItem("name")!==null)
             this.name = sessionStorage.getItem("name")
-        
-        if(sessionStorage.getItem("link")!==null)
-            this.link = sessionStorage.getItem("link")
         
         if(sessionStorage.getItem("subject")!==null)
             this.subject = sessionStorage.getItem("subject")
@@ -95,8 +95,8 @@ class NewVid extends React.Component{
                 <div className="newstudent-content-container">
                     <div className="newstudent-content-title">1급 정보 세부 항목 입력</div>
                     <input value={this.name} onChange={this.handleChange} name="name" className="newstudent-content-input" placeholder="동영상 이름"/>
-                    <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/>
-                    <input value={this.iframe} onChange={this.handleChange} name="iframe" className="newstudent-content-input" placeholder="동영상 iframe"/>
+                    <input onChange={this.fileChange} id="file" type="file" style={{display: "none"}}/>
+                    <label htmlFor="file" className="newstudent-content-input">{this.isFilein===false ? "동영상 추가" : this.vid['name']}</label>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <DropDown placeholder="동영상 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.infgroupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>

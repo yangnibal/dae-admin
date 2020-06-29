@@ -14,6 +14,7 @@ export default class Store{
         return token
     }
     @observable schoolyear = [
+        { value: "", label: "전체" },
         { value: "초1", label: "초1" },
         { value: "초2", label: "초2" },
         { value: "초3", label: "초3" },
@@ -28,6 +29,7 @@ export default class Store{
         { value: "고3", label: "고3" },
     ]
     @observable semester = [
+        { value: "", label: "전체" },
         { value: "1학기 중간", label: "1학기 중간" },
         { value: "1학기 기말", label: "1학기 기말" },
         { value: "2학기 중간", label: "2학기 중간" },
@@ -38,13 +40,16 @@ export default class Store{
         { value: "11월 모의고사", label: "11월 모의고사" },
     ]
     @observable subject = [
+        { value: "", label: "전체" },
         { value: "수학", label: "수학" },
         { value: "영어", label: "영어" },
         { value: "국어", label: "국어" },
         { value: "과학", label: "과학" },
     ]
     @observable group = []
-    @observable infgroup = []
+    @observable infgroup = [
+        { value: "", label: "전체" },
+    ]
 
     @action getGroup = () => {
         const group = []
@@ -59,6 +64,39 @@ export default class Store{
                 group.push({value: data[i]['name'], label: data[i]['name']})
             }
             this.infgroup = group
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    @observable files = []
+    @action getFiles = () => {
+        axios.get("https://api.daeoebi.com/files/", {
+            headers: {
+                Authorization: "Token " + this.getToken()
+            }
+        })
+        .then(res => {
+            this.files = res.data['results'] 
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    @action findfile = (subject, grade, group) => {
+        axios.post("https://api.daeoebi.com/files/findfile/", ({
+            subject: subject,
+            grade: grade,
+            group: group
+        }), {
+            headers: {
+                Authorization: "Token " + this.getToken()
+            }
+        })
+        .then(res => {
+            this.files = res.data
+            
         })
         .catch(err => {
             console.log(err)
