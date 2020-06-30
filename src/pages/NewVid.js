@@ -56,10 +56,46 @@ class NewVid extends React.Component{
         sessionStorage.setItem("time", this.time)
         sessionStorage.setItem("iframe", this.iframe)
     }
+
     @action fileChange = (e) => {
+        var myVideos = []
+        var time = ""
         this.vid = e.target.files[0]
-        this.isFilein = !this.isFilein
+        var file = e.target.files[0]
+        myVideos.push(file);
+        var video = document.createElement('video');
+        video.preload = 'metadata';
+      
+        function updateInfos(){
+            for (var i = 0; i < myVideos.length; i++) {
+                time += myVideos[i].duration
+            }
+        }
+        video.onloadedmetadata = function() {
+            window.URL.revokeObjectURL(video.src);
+            var duration = video.duration;
+            myVideos[myVideos.length - 1].duration = duration;
+            updateInfos();
+            var hours = Math.floor(time / 3600);
+            time %= 3600;
+            var minutes = Math.floor(time / 60);
+            var seconds = time % 60;
+            seconds = Math.floor(seconds)
+            hours = String(hours)
+            minutes = String(minutes)
+            seconds = String(seconds)
+            if(hours==="0"){
+                this.time = minutes + ":" + seconds
+            } else {
+                this.time = hours + ":" + minutes + ":" + seconds
+            }
+        }
+      
+        video.src = URL.createObjectURL(file);
     }
+      
+      
+    
 
     componentDidMount(){
         if(sessionStorage.getItem("name")!==null)
