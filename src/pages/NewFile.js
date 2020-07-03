@@ -38,7 +38,8 @@ class NewFile extends React.Component{
         formData.append("group", this.group)
         axios.post("https://api.daeoebi.com/files/", formData, {
             headers: {
-                Authorization: "Token " + store.getToken()
+                Authorization: "Token " + store.getToken(),
+                'Content-Type': 'multipart/form-data' 
             }
         })
         .then(res => {

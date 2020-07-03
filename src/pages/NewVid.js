@@ -35,17 +35,19 @@ class NewVid extends React.Component{
     }
     @action addVid = () => {
         const { store } = this.props
-        axios.post("https://api.daeoebi.com/videos/", ({
-            name: this.name,
-            time: this.time,
-            link: this.link,
-            iframe: this.iframe,
-            subject: this.subject,
-            group: this.group,
-            grade: this.schoolyear
-        }), {
+        var formData = new FormData()
+        formData.append("name", this.name)
+        formData.append("time", this.time)
+        formData.append("link", this.link)
+        formData.append("iframe", this.iframe)
+        formData.append("subject", this.subject)
+        formData.append("group", this.group)
+        formData.append("grade", this.schoolyear)
+        formData.append("video", this.vid)
+        axios.post("https://api.daeoebi.com/videos/", formData, {
             headers: {
-                Authorization: "Token " + store.getToken()
+                Authorization: "Token " + store.getToken(),
+                'Content-Type': 'multipart/form-data' 
             }
         })
         .then(res => {
