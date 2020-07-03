@@ -28,7 +28,7 @@ class NewFile extends React.Component{
     @action infgroupChange = (e) => {
         this.group = e.value
     }
-    @action uploadFile = (flag) => {
+    @action uploadFile = () => {
         const { store } = this.props
         var formData = new FormData()
         formData.append("name", this.name)
@@ -48,8 +48,22 @@ class NewFile extends React.Component{
             console.log(err)
         })
     }
+    @action saveInfo = () => {
+        sessionStorage.setItem("name", this.name)
+        sessionStorage.setItem("subject", this.subject)
+        sessionStorage.setItem("grade", this.grade)
+    }
 
     componentDidMount(){
+        if(sessionStorage.getItem("name")!==null)
+            this.name = sessionStorage.getItem("name")
+        
+        if(sessionStorage.getItem("subject")!==null)
+            this.subject = sessionStorage.getItem("subject")
+
+        if(sessionStorage.getItem("grade")!==null)
+            this.grade = sessionStorage.getItem("grade")
+
         const { store } = this.props
         const group = []
         axios.get("https://api.daeoebi.com/infgroups/", {
@@ -85,7 +99,7 @@ class NewFile extends React.Component{
                     <input type="file" id="pdfile" onChange={this.fileChange} style={{display: "none"}}/>
                     <label htmlFor="pdfile" className="newfile-selectfile">{this.isFilein===false ? "파일 첨부" : this.file['name']}</label>
                     <div className="newfile-btn">
-                        <div className="newfile-btns" onClick={() => this.uploadFile(false)}>등록</div>
+                        <div className="newfile-btns" onClick={() => this.uploadFile()}>등록</div>
                     </div>
                 </div>
             </div>
