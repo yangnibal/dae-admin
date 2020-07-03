@@ -17,7 +17,10 @@ class NewVid extends React.Component{
     @observable name = ""
     @observable time = ""
     @observable subject = ""
+    @observable link = ""
+    @observable iframe = ""
     @observable vid = []
+    @observable data = []
     @observable isFilein = false
 
     @action handleChange = (e) => {
@@ -35,6 +38,8 @@ class NewVid extends React.Component{
         axios.post("https://api.daeoebi.com/videos/", ({
             name: this.name,
             time: this.time,
+            link: this.link,
+            iframe: this.iframe,
             subject: this.subject,
             group: this.group,
             grade: this.schoolyear
@@ -58,17 +63,18 @@ class NewVid extends React.Component{
     }
 
     @action fileChange = (e) => {
+        var self = this
         var myVideos = []
-        var time = ""
-        this.vid = e.target.files[0]
+        var time = 0;
         var file = e.target.files[0]
+        this.vid = file
         myVideos.push(file);
         var video = document.createElement('video');
         video.preload = 'metadata';
-      
         function updateInfos(){
             for (var i = 0; i < myVideos.length; i++) {
                 time += myVideos[i].duration
+                
             }
         }
         video.onloadedmetadata = function() {
@@ -84,14 +90,21 @@ class NewVid extends React.Component{
             hours = String(hours)
             minutes = String(minutes)
             seconds = String(seconds)
-            if(hours==="0"){
-                this.time = minutes + ":" + seconds
-            } else {
-                this.time = hours + ":" + minutes + ":" + seconds
-            }
+            var arr = [ hours, minutes, seconds ]
+            console.log(arr)
+            self.data = arr
         }
-      
-        video.src = URL.createObjectURL(file);
+        video.src = URL.createObjectURL(file)
+        setTimeout(() => {
+            if(this.data[0]==="0"){
+                this.time = this.data[1] + ":" + this.data[2]
+            } else {
+                this.time = this.data[0] + ":" + this.data[1] + ":" + this.data[2]
+            }
+        }, 1000)
+        
+        
+        this.isFilein = true
     }
       
       
@@ -133,6 +146,9 @@ class NewVid extends React.Component{
                     <input value={this.name} onChange={this.handleChange} name="name" className="newstudent-content-input" placeholder="동영상 이름"/>
                     <input onChange={this.fileChange} id="file" type="file" style={{display: "none"}}/>
                     <label htmlFor="file" className="newstudent-content-input">{this.isFilein===false ? "동영상 추가" : this.vid['name']}</label>
+                    <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/>
+                    <input value={this.iframe} onChange={this.handleChange} name="iframe" className="newstudent-content-input" placeholder="동영상 iframe"/>
+                    <input value={this.time} onChange={this.handleChange} name="time" className="newstudent-content-input" placeholder="동영상 시간"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <DropDown placeholder="동영상 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.infgroupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
