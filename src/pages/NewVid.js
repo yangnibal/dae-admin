@@ -91,7 +91,6 @@ class NewVid extends React.Component{
             minutes = String(minutes)
             seconds = String(seconds)
             var arr = [ hours, minutes, seconds ]
-            console.log(arr)
             self.data = arr
         }
         video.src = URL.createObjectURL(file)
