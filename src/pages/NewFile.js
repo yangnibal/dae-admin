@@ -33,9 +33,9 @@ class NewFile extends React.Component{
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("subject", this.subject)
+        formData.append("group", this.group)
         formData.append("grade", this.grade)
         formData.append("file", this.file)
-        formData.append("group", this.group)
         axios.post("https://api.daeoebi.com/files/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken(),
@@ -43,7 +43,7 @@ class NewFile extends React.Component{
             }
         })
         .then(res => {
-            this.props.history.goBack()
+            this.props.history.push("/inf/file")
         })
         .catch(err => {
             console.log(err)

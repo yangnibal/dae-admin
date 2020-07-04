@@ -51,7 +51,6 @@ class NewVid extends React.Component{
             }
         })
         .then(res => {
-            
             this.props.history.push("/inf/vid")
         })
         .catch(err => {

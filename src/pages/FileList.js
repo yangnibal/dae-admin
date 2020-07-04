@@ -54,6 +54,12 @@ class FileList extends React.Component{
                 Authorization: "Token " + store.getToken()
             }
         })
+        .then(res => {
+            window.location.reload()
+        })
+        .catch(err => {
+            
+        })
     }
     @action update = (id) => {
         this.props.history.push(`/inf/file/${id}/update`)
@@ -77,6 +83,7 @@ class FileList extends React.Component{
                 grade={file.grade}
                 group={file.group}
                 key={file.id}
+                link={file.file.slice(55)}
                 remove={() => this.remove(file.id)}
                 update={() => this.update(file.id)}
                 seeFiles={() => this.seeFiles(file.id)}
