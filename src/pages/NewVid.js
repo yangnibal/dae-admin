@@ -5,6 +5,18 @@ import Header from '../components/Header'
 import DropDown from '../components/DropDown'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import AWS from 'aws-sdk'
+
+AWS.config.update({
+    region: 'ap-northeast-2', 
+    credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'ap-northeast-2:aac2d1dd-7488-438f-a18a-2730fa9eed26',
+    })
+})
+var s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    params: {Bucket: 'daeoebi-storage'}
+});
 
 @inject('store')
 @observer
@@ -43,7 +55,7 @@ class NewVid extends React.Component{
         formData.append("subject", this.subject)
         formData.append("group", this.group)
         formData.append("grade", this.schoolyear)
-        formData.append("video", this.vid)
+        formData.append("video", "https://d21b5gghaflsoj.cloudfront.net/" + this.vid['name'])
         axios.post("https://api.daeoebi.com/videos/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken(),
@@ -56,6 +68,21 @@ class NewVid extends React.Component{
         .catch(err => {
             
         })
+        var upload = new AWS.S3.ManagedUpload({
+            params: {
+                Bucket: store.bucketName,
+                Key: this.vid['name'],
+                Body: this.vid,
+                ACL: "public-read"
+            }
+        });
+        var promise = upload.promise()
+        promise.then(
+            function(data){
+            },
+            function(err){
+            }
+        )
     }
     @action saveInfo = () => {
         sessionStorage.setItem("name", this.name)
@@ -146,8 +173,8 @@ class NewVid extends React.Component{
                     <input value={this.name} onChange={this.handleChange} name="name" className="newstudent-content-input" placeholder="동영상 이름"/>
                     <input onChange={this.fileChange} id="file" type="file" style={{display: "none"}}/>
                     <label htmlFor="file" className="newstudent-content-input">{this.isFilein===false ? "동영상 추가" : this.vid['name']}</label>
-                    <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/>
-                    <input value={this.iframe} onChange={this.handleChange} name="iframe" className="newstudent-content-input" placeholder="동영상 iframe"/>
+                    {this.isFilein===false ? <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/> : null}
+                    {this.isFilein===false ? <input value={this.iframe} onChange={this.handleChange} name="iframe" className="newstudent-content-input" placeholder="동영상 iframe"/> : null}
                     <input value={this.time} onChange={this.handleChange} name="time" className="newstudent-content-input" placeholder="동영상 시간"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>

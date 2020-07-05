@@ -23,6 +23,7 @@ class VidDetail extends React.Component{
         .then(res => {
             this.url = res.data['video']
             this.iframe = res.data['iframe']
+            console.log(res)
         })
         .catch(err => {
                     

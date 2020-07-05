@@ -58,7 +58,7 @@ class FileList extends React.Component{
             window.location.reload()
         })
         .catch(err => {
-            
+
         })
     }
     @action update = (id) => {
@@ -83,7 +83,7 @@ class FileList extends React.Component{
                 grade={file.grade}
                 group={file.group}
                 key={file.id}
-                link={file.file.slice(55)}
+                link={file.file}
                 remove={() => this.remove(file.id)}
                 update={() => this.update(file.id)}
                 seeFiles={() => this.seeFiles(file.id)}

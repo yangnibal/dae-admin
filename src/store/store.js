@@ -2,6 +2,10 @@ import { observable, action } from 'mobx'
 import axios from 'axios'
 
 export default class Store{
+    @observable bucketRegion = "ap-northeast-2"
+    @observable bucketName = "daeoebi-storage"
+    @observable identityPoolId = "ap-northeast-2:aac2d1dd-7488-438f-a18a-2730fa9eed26"
+
     @action getToken(){
         const ltoken = localStorage.getItem('admin_token')
         const stoken = sessionStorage.getItem('admin_token')

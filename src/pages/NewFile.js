@@ -5,6 +5,18 @@ import { action, observable } from 'mobx'
 import axios from 'axios'
 import DropDown from '../components/DropDown'
 import { Link } from 'react-router-dom'
+import AWS from 'aws-sdk'
+
+AWS.config.update({
+    region: 'ap-northeast-2', 
+    credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'ap-northeast-2:aac2d1dd-7488-438f-a18a-2730fa9eed26',
+    })
+})
+var s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    params: {Bucket: 'daeoebi-storage'}
+});
 
 @inject('store')
 @observer
@@ -35,7 +47,7 @@ class NewFile extends React.Component{
         formData.append("subject", this.subject)
         formData.append("group", this.group)
         formData.append("grade", this.grade)
-        formData.append("file", this.file)
+        formData.append("file", "https://d21b5gghaflsoj.cloudfront.net/media/" + this.file['name'])
         axios.post("https://api.daeoebi.com/files/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken(),
@@ -48,6 +60,21 @@ class NewFile extends React.Component{
         .catch(err => {
             console.log(err)
         })
+        var upload = new AWS.S3.ManagedUpload({
+            params: {
+                Bucket: store.bucketName,
+                Key: "media/" + this.file['name'],
+                Body: this.file,
+                ACL: "public-read"
+            }
+        });
+        var promise = upload.promise()
+        promise.then(
+            function(data){
+            },
+            function(err){
+            }
+        )
     }
     @action saveInfo = () => {
         sessionStorage.setItem("name", this.name)
