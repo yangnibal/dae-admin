@@ -46,6 +46,7 @@ class NewVid extends React.Component{
     }
     @action addVid = () => {
         const { store } = this.props
+        var self = this
         var link = this.link.replace("watch?v=", "embed/")
         var formData = new FormData()
         formData.append("name", this.name)
@@ -62,7 +63,7 @@ class NewVid extends React.Component{
             }
         })
         .then(res => {
-            this.props.history.push("/inf/vid")
+            alert("동영상 업로드가 완료된 후 자동으로 이전 페이지로 이동합니다.")
         })
         .catch(err => {
             
@@ -78,10 +79,14 @@ class NewVid extends React.Component{
         var promise = upload.promise()
         promise.then(
             function(data){
+                self.goBack()
             },
             function(err){
             }
         )
+    }
+    @action goBack = () => {
+        this.props.history.push("/inf/vid")
     }
     @action saveInfo = () => {
         sessionStorage.setItem("name", this.name)
