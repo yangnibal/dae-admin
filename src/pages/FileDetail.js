@@ -25,7 +25,7 @@ class FileDetail extends React.Component{
             }
         })
         .then(res => {
-            this.file = "https://docs.google.com/viewer?url=" + res.data['file'] + "&embedded=true"
+            this.file = "https://docs.google.com/viewerng/viewer?url=" + res.data['file']
             this.url = res.data['file']
         })
         .catch(err => {
@@ -43,7 +43,6 @@ class FileDetail extends React.Component{
         return(
             <div style={{width:"100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", background: "rgb(209, 209, 209)"}}>
                 <iframe id="iframe" onLoad={() => this.handleLoad()} title={this.file} src={this.file} style={{border: "none", width: "100vw", height: "100vh"}}/>
-                <div onClick={() => this.props.history.goBack()} style={{position: "fixed", right: "12px", top: "12px", background: "rgb(209, 209, 209)", width: "120px", height: "40px", color: "white", zIndex: "999", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "1.2rem", fontWeight: "500", cursor: "pointer"}}>뒤로가기</div>
                 <div style={{position: "fixed", right: "12px", bottom: "12px", background: "rgb(209, 209, 209)", width: "120px", height: "40px", color: "white", zIndex: "999", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "1.2rem", fontWeight: "500", cursor: "pointer"}}>인쇄하기</div>
             </div>
         )
