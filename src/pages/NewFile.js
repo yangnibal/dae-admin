@@ -42,6 +42,7 @@ class NewFile extends React.Component{
     }
     @action uploadFile = () => {
         const { store } = this.props
+        var self = this
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("subject", this.subject)
@@ -55,7 +56,7 @@ class NewFile extends React.Component{
             }
         })
         .then(res => {
-            this.props.history.push("/inf/file")
+            alert("파일 업로드가 완료된 후 자동으로 이전 페이지로 이동합니다.")
         })
         .catch(err => {
             console.log(err)
@@ -71,10 +72,14 @@ class NewFile extends React.Component{
         var promise = upload.promise()
         promise.then(
             function(data){
+                self.goBack()
             },
             function(err){
             }
         )
+    }
+    @action goBack = () => {
+        this.props.history.push("/inf/file")
     }
     @action saveInfo = () => {
         sessionStorage.setItem("name", this.name)

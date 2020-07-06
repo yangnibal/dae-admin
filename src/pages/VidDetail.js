@@ -9,7 +9,7 @@ import axios from 'axios'
 class VidDetail extends React.Component{
 
     @observable url = ""
-    @observable iframe = ""
+    @observable link = ""
 
     componentDidMount(){
         const { store } = this.props
@@ -22,7 +22,7 @@ class VidDetail extends React.Component{
         })
         .then(res => {
             this.url = res.data['video']
-            this.iframe = res.data['iframe']
+            this.link = res.data['link']
             console.log(res)
         })
         .catch(err => {
@@ -34,12 +34,12 @@ class VidDetail extends React.Component{
         return(
             <div style={{width: "100vw", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                 <Header/>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100vw"}}>
+                <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100vw", height: "calc(100vh - 8rem)"}}>
                     {this.iframe==="" ? 
                     <video autoPlay controlsList="nodownload" controls height="720" width="1280" style={{outline: "none"}}>
                         <source src={this.url} type="video/mp4"/>
                     </video> :
-                    <iframe src={this.iframe} title={this.iframe}/>
+                    <iframe src={`${this.link}?autoplay=1`} title={this.link} width="700" height="393.75" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                     }
                 </div>
             </div>

@@ -30,7 +30,6 @@ class NewVid extends React.Component{
     @observable time = ""
     @observable subject = ""
     @observable link = ""
-    @observable iframe = ""
     @observable vid = []
     @observable data = []
     @observable isFilein = false
@@ -47,11 +46,11 @@ class NewVid extends React.Component{
     }
     @action addVid = () => {
         const { store } = this.props
+        var link = this.link.replace("watch?v=", "embed/")
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("time", this.time)
-        formData.append("link", this.link)
-        formData.append("iframe", this.iframe)
+        formData.append("link", link)
         formData.append("subject", this.subject)
         formData.append("group", this.group)
         formData.append("grade", this.schoolyear)
@@ -87,7 +86,6 @@ class NewVid extends React.Component{
     @action saveInfo = () => {
         sessionStorage.setItem("name", this.name)
         sessionStorage.setItem("time", this.time)
-        sessionStorage.setItem("iframe", this.iframe)
     }
 
     @action fileChange = (e) => {
@@ -174,7 +172,6 @@ class NewVid extends React.Component{
                     <input onChange={this.fileChange} id="file" type="file" style={{display: "none"}}/>
                     <label htmlFor="file" className="newstudent-content-input">{this.isFilein===false ? "동영상 추가" : this.vid['name']}</label>
                     {this.isFilein===false ? <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/> : null}
-                    {this.isFilein===false ? <input value={this.iframe} onChange={this.handleChange} name="iframe" className="newstudent-content-input" placeholder="동영상 iframe"/> : null}
                     <input value={this.time} onChange={this.handleChange} name="time" className="newstudent-content-input" placeholder="동영상 시간"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
