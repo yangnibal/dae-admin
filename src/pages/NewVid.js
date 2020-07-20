@@ -33,6 +33,7 @@ class NewVid extends React.Component{
     @observable vid = []
     @observable data = []
     @observable isFilein = false
+    @observable uploaded = 0
 
     @action handleChange = (e) => {
         const { name, value } = e.target
@@ -62,28 +63,22 @@ class NewVid extends React.Component{
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(res => {
-            alert("동영상 업로드가 완료된 후 자동으로 이전 페이지로 이동합니다.")
-        })
-        .catch(err => {
-            
-        })
-        var upload = new AWS.S3.ManagedUpload({
-            params: {
-                Bucket: store.bucketName,
-                Key: this.vid['name'],
-                Body: this.vid,
-                ACL: "public-read"
+        .then(res => {})
+        .catch(err => {})
+        var params = {
+            Bucket: store.bucketName,
+            Key: this.vid['name'],
+            Body: this.vid,
+            ACL: "public-read"
+        }
+        s3.upload(params).on("httpUploadProgress", function(e){
+            self.uploaded = Math.round(e.loaded / e.total * 100);
+        }).send(function(err, data) {
+            if (err){
+                return;
             }
-        });
-        var promise = upload.promise()
-        promise.then(
-            function(data){
-                self.goBack()
-            },
-            function(err){
-            }
-        )
+            self.goBack()
+        })
     }
     @action goBack = () => {
         this.props.history.push("/inf/vid")
@@ -132,8 +127,6 @@ class NewVid extends React.Component{
                 this.time = this.data[0] + ":" + this.data[1] + ":" + this.data[2]
             }
         }, 1000)
-        
-        
         this.isFilein = true
     }
       
@@ -175,7 +168,7 @@ class NewVid extends React.Component{
                     <div className="newstudent-content-title">1급 정보 세부 항목 입력</div>
                     <input value={this.name} onChange={this.handleChange} name="name" className="newstudent-content-input" placeholder="동영상 이름"/>
                     <input onChange={this.fileChange} id="file" type="file" style={{display: "none"}}/>
-                    <label htmlFor="file" className="newstudent-content-input">{this.isFilein===false ? "동영상 추가" : this.vid['name']}</label>
+                    <label htmlFor="file" className="newstudent-content-input">{this.uploaded===0 ? this.isFilein===false ? "동영상 추가" : this.vid['name'] : this.uploaded+"%"}</label>
                     {this.isFilein===false ? <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/> : null}
                     <input value={this.time} onChange={this.handleChange} name="time" className="newstudent-content-input" placeholder="동영상 시간"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>

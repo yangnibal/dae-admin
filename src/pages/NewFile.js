@@ -28,6 +28,7 @@ class NewFile extends React.Component{
     @observable subject = ""
     @observable grade = ""
     @observable group = ""
+    @observable uploaded = 0
 
     @action handleChange = (e) => {
         const { name, value } = e.target
@@ -55,28 +56,22 @@ class NewFile extends React.Component{
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(res => {
-            alert("파일 업로드가 완료된 후 자동으로 이전 페이지로 이동합니다.")
-        })
-        .catch(err => {
-            console.log(err)
-        })
-        var upload = new AWS.S3.ManagedUpload({
-            params: {
-                Bucket: store.bucketName,
-                Key: "media/" + this.file['name'],
-                Body: this.file,
-                ACL: "public-read"
+        .then(res => {})
+        .catch(err => {})
+        var params = {
+            Bucket: store.bucketName,
+            Key: "media/" + this.file['name'],
+            Body: this.file,
+            ACL: "public-read"
+        }
+        s3.upload(params).on("httpUploadProgress", function(e){
+            self.uploaded = Math.round(e.loaded / e.total * 100);
+        }).send(function(err, data) {
+            if (err){
+                return;
             }
-        });
-        var promise = upload.promise()
-        promise.then(
-            function(data){
-                self.goBack()
-            },
-            function(err){
-            }
-        )
+            self.goBack()
+        })
     }
     @action goBack = () => {
         this.props.history.push("/inf/file")
@@ -111,9 +106,7 @@ class NewFile extends React.Component{
             }
             store.infgroup = group
         })
-        .catch(err => {
-            
-        })
+        .catch(err => {})
     }
 
     render(){
@@ -130,7 +123,7 @@ class NewFile extends React.Component{
                         <Link to="/groups/new" onClick={() => this.saveInfo()} className="newfile-addgroup">그룹 추가</Link>
                     </div>
                     <input type="file" id="pdfile" onChange={this.fileChange} style={{display: "none"}}/>
-                    <label htmlFor="pdfile" className="newfile-selectfile">{this.isFilein===false ? "파일 첨부" : this.file['name']}</label>
+                    <label htmlFor="pdfile" className="newfile-selectfile">{this.uploaded===0 ? this.isFilein===false ? "파일 첨부" : this.file['name'] : this.uploaded+"%"}</label>
                     <div className="newfile-btn">
                         <div className="newfile-btns" onClick={() => this.uploadFile()}>등록</div>
                     </div>
