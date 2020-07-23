@@ -167,9 +167,9 @@ class NewVid extends React.Component{
                 <div className="newstudent-content-container">
                     <div className="newstudent-content-title">1급 정보 세부 항목 입력</div>
                     <input value={this.name} onChange={this.handleChange} name="name" className="newstudent-content-input" placeholder="동영상 이름"/>
+                    {this.isFilein===false ? <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/> : null}
                     <input onChange={this.fileChange} id="file" type="file" style={{display: "none"}}/>
                     <label htmlFor="file" className="newstudent-content-input">{this.uploaded===0 ? this.isFilein===false ? "동영상 추가" : this.vid['name'] : this.uploaded+"%"}</label>
-                    {this.isFilein===false ? <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="동영상 링크"/> : null}
                     <input value={this.time} onChange={this.handleChange} name="time" className="newstudent-content-input" placeholder="동영상 시간"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
                     <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>

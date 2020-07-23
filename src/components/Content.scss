@@ -38,6 +38,9 @@
             border: 1px solid #a6a6a6;
             color: white;
             text-align: center;
+            &:hover{
+                color: #777676;
+            }
         }
     }
     .usercontent-btns{
@@ -52,6 +55,9 @@
             &:nth-child(2){
                 cursor: pointer;
                 margin-right: 2vw;
+            }
+            &:hover{
+                color: #777676;
             }
         }
     }
@@ -96,6 +102,9 @@
             background: #2e3c20;
             color: white;
             cursor: pointer;
+            &:hover{
+                color: #777676;
+            }
         }
     }
     .vidcontent-btns{
@@ -110,6 +119,9 @@
             &:nth-child(2){
                 cursor: pointer;
                 margin-right: 2vw;
+            }
+            &:hover{
+                color: #777676;
             }
         }
     }
@@ -152,6 +164,9 @@
             color: white;
             cursor: pointer;
             text-decoration: none;
+            &:hover{
+                color: #777676;
+            }
         }
     }
     .matcontent-btns{
@@ -166,6 +181,9 @@
             &:nth-child(2){
                 cursor: pointer;
                 margin-right: 2vw;
+            }
+            &:hover{
+                color: #777676;
             }
         }
     }
@@ -205,6 +223,9 @@
         .groupcontent-btn{
             font-size: 1.2rem;
             cursor: pointer;
+            &:hover{
+                color: #777676;
+            }
         }
     }
 }
@@ -246,6 +267,9 @@
             background: #2e3c20;
             color: white;
             cursor: pointer;
+            &:hover{
+                color: #777676;
+            }
         }
     }
     .filecontent-btns{
@@ -260,6 +284,9 @@
             &:nth-child(2){
                 cursor: pointer;
                 margin-right: 2vw;
+            }
+            &:hover{
+                color: #777676;
             }
         }
     }

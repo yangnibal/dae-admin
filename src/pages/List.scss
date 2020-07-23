@@ -96,6 +96,9 @@
                     cursor: pointer;
                     min-width: 40px;
                     text-decoration: none;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
             .user-content-header-right{
@@ -110,6 +113,9 @@
                     padding: 0.2rem 1.5rem;
                     text-decoration: none;
                     cursor: pointer;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
         }
@@ -308,6 +314,9 @@
                     cursor: pointer;
                     min-width: 40px;
                     text-decoration: none;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
             .vid-header-right{
@@ -322,6 +331,9 @@
                     padding: 0.2rem 1.5rem;
                     text-decoration: none;
                     cursor: pointer;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
         }
@@ -438,6 +450,9 @@
                     margin-left: 0.5rem;
                     cursor: pointer;
                     min-width: 40px;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
             .group-header-right{
@@ -452,6 +467,9 @@
                     padding: 0.2rem 1.5rem;
                     text-decoration: none;
                     cursor: pointer;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
         }
@@ -576,6 +594,9 @@
                     cursor: pointer;
                     min-width: 40px;
                     text-decoration: none;   
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
             .file-header-right{
@@ -590,6 +611,9 @@
                     padding: 0.2rem 1.5rem;
                     text-decoration: none;
                     cursor: pointer;
+                    &:hover{
+                        color: #777676;
+                    }
                 }
             }
         }
@@ -617,6 +641,9 @@
                     margin-right: 1rem;
                     &:nth-child(1){
                         margin-left: 10vw;
+                    }
+                    &:hover{
+                        color: #777676;
                     }
                 }
             }

@@ -116,6 +116,9 @@
                 border-radius: 20px;
                 margin: 0 1rem;
                 text-decoration: none;
+                &:hover{
+                    color: #777676;
+                }
             }
         }
         .newstudent-content-btn-container{
@@ -143,6 +146,9 @@
                 &:nth-child(2){
                     margin-left: 0.5rem;
                 }
+                &:hover{
+                    color: #777676;
+                }
             }
             .newvid-content-btn{
                 width: 100%;
@@ -154,6 +160,9 @@
                 font-size: 1.5rem;
                 border: 1px solid #807f80;
                 cursor: pointer;
+                &:hover{
+                    color: #777676;
+                }
             }
         }
     }
@@ -235,6 +244,9 @@
                 &:nth-child(2){
                     margin-left: 0.5rem;
                 }
+                &:hover{
+                    color: #777676;
+                }
             }
         }
     }
@@ -315,6 +327,9 @@
                 border-radius: 20px;
                 margin: 0 1rem;
                 text-decoration: none;
+                &:hover{
+                    color: #777676;
+                }
             }
         }
         .newfile-selectfile{
@@ -362,7 +377,9 @@
                 font-size: 1.5rem;
                 border: 1px solid rgb(128, 127, 128);
                 cursor: pointer;
-
+                &:hover{
+                    color: #777676;
+                }
             }
         }
     }
