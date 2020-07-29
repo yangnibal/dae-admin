@@ -88,6 +88,20 @@ export default class Store{
             console.log(err)
         })
     }
+    @observable printfiles = []
+    @action getPrintFiles = () => {
+        axios.get("https://api.daeoebi.com/printfiles/", {
+            headers: {
+                Authorization: "Token " + this.getToken()
+            }
+        })
+        .then(res => {
+            this.printfiles = res.data['results'] 
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
     @action findfile = (subject, grade, group) => {
         axios.post("https://api.daeoebi.com/files/findfile/", ({
             subject: subject,

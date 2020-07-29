@@ -17,7 +17,10 @@ class UserUpdate extends React.Component{
     @observable newpassword = ""
     @observable newpasswordcheck = ""
     @observable can_access_1 = false
+    @observable can_save_1 = false
     @observable can_access_2 = false
+    @observable can_access_3 = false
+    @observable can_save_3 = false
     @observable id = ""
     @observable isPwChecked = true
 
@@ -39,7 +42,10 @@ class UserUpdate extends React.Component{
         formData.append("phone_number", this.phone_number)
         formData.append("email", this.email)
         formData.append("can_access_1", this.can_access_1)
+        formData.append("can_save_1", this.can_save_1)
         formData.append("can_access_2", this.can_access_2)
+        formData.append("can_access_3", this.can_access_3)
+        formData.append("can_save_3", this.can_save_3)
         if(this.newpassword!==""&&this.isPwChecked===true){
             formData.append("password", this.newpassword)
         } else if(this.newpassword!==""&&this.isPwChecked===false){
@@ -106,11 +112,23 @@ class UserUpdate extends React.Component{
                     </div>
                     <div className="userupdate-toggle" onClick={() => this.handleToggle("can_access_1")} name="can_access_1">
                         <div className="userupdate-checkbox">{this.can_access_1===true ? "✓" : null}</div>
-                        <div>1급 정보 열람 권한</div>
+                        <div>1급 정보 인쇄 권한</div>
+                    </div>
+                    <div className="userupdate-toggle" onClick={() => this.handleToggle("can_save_1")} name="can_access_1">
+                        <div className="userupdate-checkbox">{this.can_save_1===true ? "✓" : null}</div>
+                        <div>1급 정보 저장 권한</div>
                     </div>
                     <div className="userupdate-toggle" onClick={() => this.handleToggle("can_access_2")} name="can_access_1">
                         <div className="userupdate-checkbox">{this.can_access_2===true ? "✓" : null}</div>
                         <div>성적 등급 프로그램 사용 권한</div>
+                    </div>
+                    <div className="userupdate-toggle" onClick={() => this.handleToggle("can_access_3")} name="can_access_1">
+                        <div className="userupdate-checkbox">{this.can_access_3===true ? "✓" : null}</div>
+                        <div>교재 출력 프로그램 인쇄 권한</div>
+                    </div>
+                    <div className="userupdate-toggle" onClick={() => this.handleToggle("can_save_3")} name="can_access_1">
+                        <div className="userupdate-checkbox">{this.can_save_3===true ? "✓" : null}</div>
+                        <div>교재 출력 프로그램 저장 권한</div>
                     </div>
                     <div className="userupdate-btns">
                         <div className="userupdate-btn" onClick={() => this.cancle()}>취소</div>

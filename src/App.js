@@ -20,6 +20,9 @@ import FileList from './pages/FileList'
 import FileDetail from './pages/FileDetail'
 import FileUpdate from './pages/FileUpdate'
 import SavedVidDetail from './pages/SavedVidDetail'
+import PrintFileList from './pages/PrintFileList'
+import NewPrintFile from './pages/NewPrintFile'
+import PrintFileUpdate from './pages/PrintFileUpdate'
  
 class App extends React.Component{
 	render(){
@@ -27,6 +30,9 @@ class App extends React.Component{
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/" component={Home}/>
+					<Route exact path="/printfile" component={PrintFileList}/>
+					<Route exact path="/printfile/new" component={NewPrintFile}/>
+					<Route exact path="/printfile/:printfileid/update" component={PrintFileUpdate}/>
 					<Route exact path="/account/login" component={Login}/>
 					<Route exact path="/users" component={UserList}/>
 					<Route exact path="/users/:username/update" component={UserUpdate}/>

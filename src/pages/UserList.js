@@ -73,14 +73,8 @@ class UserList extends React.Component{
     render(){
         const userlist = this.users.map(user => (
             <UserContent
-                name={user.name}
-                username={user.username}
-                id={user.username}
+                {...user}
                 key={user.id}
-                phone_number={user.phone_number}
-                email={user.email}
-                can_access_1={user.can_access_1}
-                can_access_2={user.can_access_2}
                 remove={() => this.remove(user.username)}
                 update={() => this.update(user.username)}
             />
@@ -103,10 +97,12 @@ class UserList extends React.Component{
                         <div className="user-content-body-header">
                             <div className="user-content-body-header-text">사용자 이름</div>
                             <div className="user-content-body-header-text">아이디</div>
-                            <div className="user-content-body-header-text">전화번호</div>
                             <div className="user-content-body-header-text">이메일</div>
                             <div className="user-content-body-header-text">1급 정보</div>
+                            <div className="user-content-body-header-text">1급 정보(저장)</div>
                             <div className="user-content-body-header-text">성적 등급 관리</div>
+                            <div className="user-content-body-header-text">교재 출력</div>
+                            <div className="user-content-body-header-text">교재 출력(저장)</div>
                         </div>
                         <div className="user-content-body">
                             {userlist}

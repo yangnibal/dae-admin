@@ -138,23 +138,29 @@
                     display: flex;
                     justify-content: center;
                     &:nth-child(1){
-                        margin-left: 5vw;
-                        width: 12vw;
+                        margin-left: 3vw;
+                        width: 10vw;
                     }
                     &:nth-child(2){
-                        width: 12vw;
+                        width: 10vw;
                     }
                     &:nth-child(3){
                         width: 15vw;
                     }
                     &:nth-child(4){
-                        width: 15vw;
+                        width: 10vw;
                     }
                     &:nth-child(5){
-                        width: 12vw;
+                        width: 10vw;
                     }
                     &:nth-child(6){
-                        width: 12vw;
+                        width: 10vw;
+                    }
+                    &:nth-child(7){
+                        width: 10vw;
+                    }
+                    &:nth-child(8){
+                        width: 10vw;
                     }
                 }
             }
