@@ -34,6 +34,9 @@ class NewFile extends React.Component{
         const { name, value } = e.target
         this[name] = value
     }
+    @action schoolyearChange = (e) => {
+        this.grade = e.value
+    }
     @action fileChange = (e) => {
         this.file = e.target.files[0]
         this.isFilein = !this.isFilein
@@ -117,7 +120,7 @@ class NewFile extends React.Component{
                 <div className="newfile-sticky">
                     <input name="name" value={this.name} onChange={this.handleChange} placeholder="교재 이름" className="newfile-input"/>
                     <input name="subject" value={this.subject} onChange={this.handleChange} placeholder="교재 관련 과목" className="newfile-input"/>
-                    <input name="grade" value={this.grade} onChange={this.handleChange} placeholder="교재 활용 학년" className="newfile-input"/>
+                    <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newfile-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <DropDown placeholder="교재 그룹 지정" option={store.infgroup} className="newfile-dropdown" classNamePrefix="react-select" onChange={this.infgroupChange} isMulti={false} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <div className="newfile-addgroup-btn">
                         <Link to="/groups/new" onClick={() => this.saveInfo()} className="newfile-addgroup">그룹 추가</Link>

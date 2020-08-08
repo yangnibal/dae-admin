@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 @observer
 class FileUpdate extends React.Component{
 
-    @observable pdfile = []
+    @observable file = ""
     @observable name = ""
     @observable subject = ""
     @observable grade = ""
@@ -20,9 +20,6 @@ class FileUpdate extends React.Component{
     @action handleChange = (e) => {
         const { name, value } = e.target
         this[name] = value
-    }
-    @action fileChange = (e) => {
-        this.file = e.target.files[0]
     }
     @action infgroupChange = (e) => {
         this.group = e.value
@@ -35,10 +32,14 @@ class FileUpdate extends React.Component{
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("subject", this.subject)
-        formData.append("grade", this.grade)
+        if(this.grade==="전체"){
+            formData.append("grade", "")
+        } else {
+            formData.append("grade", this.grade)
+        }
         formData.append("file", this.file)
         formData.append("group", this.group)
-        axios.put("https://api.daeoebi.com/files/" + this.id + "/", formData, {
+        axios.patch("https://api.daeoebi.com/files/" + this.id + "/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -71,13 +72,17 @@ class FileUpdate extends React.Component{
         .catch(err => {
             
         })
-        axios.get("https://api.daeoebi.com/files/" + path + "/", {
+        axios.get("https://api.daeoebi.com/files/" + this.id + "/", {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
         })
         .then(res => {
-            console.log(res)
+            this.name = res.data['name']
+            this.subject = res.data['subject']
+            this.grade = res.data['grade']
+            this.file = res.data['file']
+            this.group = res.data['group']
         })
         .catch(err => {
             console.log(err)
@@ -97,8 +102,6 @@ class FileUpdate extends React.Component{
                     <div className="newfile-addgroup-btn">
                         <Link to="/groups/new" onClick={() => this.saveInfo()} className="newfile-addgroup">그룹 추가</Link>
                     </div>
-                    <input type="file" id="pdfile" onChange={this.fileChange} value={this.file} style={{display: "none"}}/>
-                    <label htmlFor="pdfile" className="newfile-selectfile">파일 첨부</label>
                     <div className="newfile-btn">
                         <div className="updatefile-btns" onClick={() => this.cancle()}>취소</div>
                         <div className="updatefile-btns" onClick={() => this.uploadFile()}>수정</div>
