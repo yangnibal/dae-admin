@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
 import axios from 'axios'
+import './Detail.scss'
 
 @inject('store')
 @observer
@@ -32,10 +33,10 @@ class VidDetail extends React.Component{
 
     render(){
         return(
-            <div style={{width: "100vw", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+            <div className="viddetail-container">
                 <Header/>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100vw", height: "calc(100vh - 8rem)"}}>
-                    <iframe src={this.link==="" ? this.url : `${this.link}?autoplay=1`} title={this.link} width="700" height="393.75" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                <div className="viddetail-sticky">
+                    <iframe width="800" src={this.link==="" ? this.url : `${this.link}?autoplay=1`} title={this.link} className="viddetail" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                 </div>
             </div>
         )

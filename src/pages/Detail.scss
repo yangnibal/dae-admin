@@ -1,0 +1,33 @@
+.viddetail-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .viddetail-sticky{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        .viddetail{
+            height: 720px;
+            width: 1280px;
+            outline: none;
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .viddetail-container{
+        .viddetail-sticky{
+            height: calc(100% - 8rem);
+            .viddetail{
+                height: 196.875px;
+                width: 350px;
+                margin-bottom: 7rem;
+            }
+        }
+    }
+}
+

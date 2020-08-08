@@ -56,7 +56,9 @@ class NewVid extends React.Component{
         formData.append("subject", this.subject)
         formData.append("group", this.group)
         formData.append("grade", this.schoolyear)
-        formData.append("video", "https://d21b5gghaflsoj.cloudfront.net/" + this.vid['name'])
+        if(this.vid!==[]){
+            formData.append("video", "https://d21b5gghaflsoj.cloudfront.net/" + this.vid['name'])
+        }
         axios.post("https://api.daeoebi.com/videos/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken(),
@@ -65,20 +67,23 @@ class NewVid extends React.Component{
         })
         .then(res => {})
         .catch(err => {})
+        
         var params = {
             Bucket: store.bucketName,
             Key: this.vid['name'],
             Body: this.vid,
             ACL: "public-read"
         }
-        s3.upload(params).on("httpUploadProgress", function(e){
-            self.uploaded = Math.round(e.loaded / e.total * 100);
-        }).send(function(err, data) {
-            if (err){
-                return;
-            }
-            self.goBack()
-        })
+        if(this.vid!==[]){
+            s3.upload(params).on("httpUploadProgress", function(e){
+                self.uploaded = Math.round(e.loaded / e.total * 100);
+            }).send(function(err, data) {
+                if (err){
+                    return;
+                }
+                self.goBack()
+            })
+        }
     }
     @action goBack = () => {
         this.props.history.push("/inf/vid")
