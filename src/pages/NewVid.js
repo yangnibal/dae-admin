@@ -65,7 +65,7 @@ class NewVid extends React.Component{
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(res => {})
+        .then(res => {if(this.vid===[]) this.props.history.goBack()})
         .catch(err => {})
         
         var params = {
