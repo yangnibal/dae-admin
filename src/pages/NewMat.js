@@ -27,13 +27,13 @@ class NewMat extends React.Component{
     }
     @action addTest = (name, link, subject, grade, group) => {
         const { store } = this.props
-        formdata = new FormData()
-        formdata.append("name", name)
-        formdata.append("link", link)
-        formdata.append("subject", subject)
-        formdata.append("grade", grade)
-        formdata.append("group", group)
-        axios.post("https://api.daeoebi.com/materials/", formdata, {
+        var formData = new FormData()
+        formData.append("name", name)
+        formData.append("link", link)
+        formData.append("subject", subject)
+        formData.append("grade", grade)
+        formData.append("group", group)
+        axios.post("https://api.daeoebi.com/materials/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
