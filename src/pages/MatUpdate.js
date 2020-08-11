@@ -31,13 +31,16 @@ class MatUpdate extends React.Component{
     }
     @action update = () => {
         const { store } = this.props
-        axios.patch("https://api.daeoebi.com/materials/" + this.id + "/", ({
-            name: this.name,
-            link: this.link,
-            subject: this.subject,
-            grade: this.grade,
-            group: this.group
-        }), {
+        var formData = new FormData()
+        formData.append("name", this.name)
+        formData.append("subject", this.subject)
+        if(this.grade==="전체"){
+            formData.append("grade", "")
+        } else {
+            formData.append("grade", this.grade)
+        }
+        formData.append("group", this.group)
+        axios.put("https://api.daeoebi.com/materials/" + this.id + "/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -64,6 +67,9 @@ class MatUpdate extends React.Component{
             this.name = res.data['name']
             this.link = res.data['link']
             this.subject = res.data['subject']
+            this.grade = res.data['grade']
+            this.group = res.data['group']
+            console.log(res)
         })
         .catch(err => {
             
@@ -80,7 +86,7 @@ class MatUpdate extends React.Component{
                     <input value={this.name} onChange={this.handleChange} name="name" className="newstudent-content-input" placeholder="자료 이름"/>
                     <input value={this.link} onChange={this.handleChange} name="link" className="newstudent-content-input" placeholder="자료 링크"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="자료 관련 과목"/>
-                    <DropDown placeholder="자료 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
+                    <input value={this.grade} onChange={this.handleChange} name="grade" className="newstudent-content-input" placeholder="자료 활용 학년"/>
                     <DropDown placeholder="자료 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <div className="newstudent-content-btn-container">
                         <div className="newstudent-content-btn" onClick={() => this.cancle()}>취소</div>

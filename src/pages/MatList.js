@@ -96,14 +96,30 @@ class MatList extends React.Component{
         } else {
             token = stoken
         }
+        const { store } = this.props
         axios.get("https://api.daeoebi.com/materials", {
             headers: {
                 Authorization: "Token " + token
             }
         })
         .then(res => {
-            this.mats = res.data['results']
-            this.getGroup()
+            this.mats = res.data
+            const group = []
+            axios.get("https://api.daeoebi.com/infgroups/", {
+                headers: {
+                    Authorization: "Token " + token
+                }
+            })
+            .then(res => {
+                var data = res.data['results']
+                for(var i in data){
+                    group.push({value: data[i]['name'], label: data[i]['name']})
+                }
+                store.infgroup = group
+            })
+            .catch(err => {
+                
+            })
         })
         .catch(err => {
             

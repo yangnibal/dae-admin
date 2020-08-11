@@ -5,17 +5,30 @@ import { action, observable } from 'mobx'
 import axios from 'axios'
 import DropDown from '../components/DropDown'
 import { Link } from 'react-router-dom'
+import AWS from 'aws-sdk'
+
+AWS.config.update({
+    region: 'ap-northeast-2', 
+    credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'ap-northeast-2:aac2d1dd-7488-438f-a18a-2730fa9eed26',
+    })
+})
+var s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    params: {Bucket: 'daeoebi-storage'}
+});
 
 @inject('store')
 @observer
 class FileUpdate extends React.Component{
 
-    @observable file = ""
+    @observable file = []
+    @observable isFilein = false
     @observable name = ""
     @observable subject = ""
     @observable grade = ""
     @observable group = ""
-    @observable id = ""
+    @observable uploaded = 0
 
     @action handleChange = (e) => {
         const { name, value } = e.target
@@ -27,8 +40,13 @@ class FileUpdate extends React.Component{
     @action cancle = () => {
         this.props.history.goBack()
     }
+    @action fileChange = (e) => {
+        this.file = e.target.files[0]
+    }
+    
     @action uploadFile = () => {
         const { store } = this.props
+        var self = this
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("subject", this.subject)
@@ -37,9 +55,9 @@ class FileUpdate extends React.Component{
         } else {
             formData.append("grade", this.grade)
         }
-        formData.append("file", this.file)
+        formData.append("file", "https://d21b5gghaflsoj.cloudfront.net/media/" + this.file['name'])
         formData.append("group", this.group)
-        axios.patch("https://api.daeoebi.com/files/" + this.id + "/", formData, {
+        axios.put("https://api.daeoebi.com/files/" + this.id + "/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken()
             }
@@ -49,6 +67,20 @@ class FileUpdate extends React.Component{
         })
         .catch(err => {
             console.log(err)
+        })
+        var params = {
+            Bucket: store.bucketName,
+            Key: "media/" + this.file['name'],
+            Body: this.file,
+            ACL: "public-read"
+        }
+        s3.upload(params).on("httpUploadProgress", function(e){
+            self.uploaded = Math.round(e.loaded / e.total * 100);
+        }).send(function(err, data) {
+            if (err){
+                return;
+            }
+            self.goBack()
         })
     }
 
@@ -81,8 +113,8 @@ class FileUpdate extends React.Component{
             this.name = res.data['name']
             this.subject = res.data['subject']
             this.grade = res.data['grade']
-            this.file = res.data['file']
             this.group = res.data['group']
+            this.file['name'] = res.data['file'].split("https://d21b5gghaflsoj.cloudfront.net/media/")[1]
         })
         .catch(err => {
             console.log(err)
@@ -102,6 +134,8 @@ class FileUpdate extends React.Component{
                     <div className="newfile-addgroup-btn">
                         <Link to="/groups/new" onClick={() => this.saveInfo()} className="newfile-addgroup">그룹 추가</Link>
                     </div>
+                    <input type="file" id="pdfile" onChange={this.fileChange} value={this.file} style={{display: "none"}}/>
+                    <label htmlFor="pdfile" className="newfile-selectfile">{this.uploaded===0 ? this.isFilein===false ? "파일 첨부" : this.file['name'] : this.uploaded+"%"}</label>
                     <div className="newfile-btn">
                         <div className="updatefile-btns" onClick={() => this.cancle()}>취소</div>
                         <div className="updatefile-btns" onClick={() => this.uploadFile()}>수정</div>

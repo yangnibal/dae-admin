@@ -93,7 +93,7 @@ class VidList extends React.Component{
             }
         })
         .then(res => {
-            this.vids = res.data['results']
+            this.vids = res.data
             
         })
         .catch(err => {

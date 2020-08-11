@@ -57,7 +57,7 @@ export default class Store{
 
     @action getGroup = () => {
         const group = []
-        axios.get("http://api.daeoebi.com/infgroups/", {
+        axios.get("https://api.daeoebi.com/infgroups/", {
             headers: {
                 Authorization: "Token " + this.getToken()
             }
@@ -82,7 +82,7 @@ export default class Store{
             }
         })
         .then(res => {
-            this.files = res.data['results'] 
+            this.files = res.data
         })
         .catch(err => {
             console.log(err)
@@ -96,7 +96,7 @@ export default class Store{
             }
         })
         .then(res => {
-            this.printfiles = res.data['results'] 
+            this.printfiles = res.data
         })
         .catch(err => {
             console.log(err)
@@ -114,6 +114,24 @@ export default class Store{
         })
         .then(res => {
             this.files = res.data
+            
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    @action findprintfile = (subject, grade, group) => {
+        axios.post("https://api.daeoebi.com/printfiles/findfile/", ({
+            subject: subject,
+            grade: grade,
+            group: group
+        }), {
+            headers: {
+                Authorization: "Token " + this.getToken()
+            }
+        })
+        .then(res => {
+            this.printfiles = res.data
             
         })
         .catch(err => {

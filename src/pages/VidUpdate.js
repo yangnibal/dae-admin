@@ -23,13 +23,14 @@ class VidUpdate extends React.Component{
 
     @observable name = ""
     @observable link = ""
-    @observable video = []
+    @observable vid = []
     @observable subject = ""
     @observable grade = ""
     @observable group = ""
     @observable uploaded = 0
     @observable time = ""
     @observable isFilein = false
+    @observable id = ""
 
     @action handleChange = (e) => {
         const { name, value } = e.target
@@ -51,12 +52,16 @@ class VidUpdate extends React.Component{
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("time", this.time)
-        formData.append("link", link)
+        formData.append("link", "")
         formData.append("subject", this.subject)
         formData.append("group", this.group)
-        formData.append("grade", this.schoolyear)
+        if(this.grade==="전체"){
+            formData.append("grade", "")
+        } else {
+            formData.append("grade", this.grade)
+        }
         formData.append("video", "https://d21b5gghaflsoj.cloudfront.net/" + this.vid['name'])
-        axios.put("https://api.daeoebi.com/videos/", formData, {
+        axios.put("https://api.daeoebi.com/videos/" + this.id + "/", formData, {
             headers: {
                 Authorization: "Token " + store.getToken(),
                 'Content-Type': 'multipart/form-data' 
@@ -155,6 +160,11 @@ class VidUpdate extends React.Component{
             this.link = res.data['link']
             this.iframe = res.data['iframe']
             this.subject = res.data['subject']
+            this.group = res.data['group']
+            this.grade = res.data['grade']
+            this.time = res.data['time']
+            this.vid['name'] = res.data['video'].split("https://d21b5gghaflsoj.cloudfront.net/")[1]
+            console.log(res)
         })
         .catch(err => {
             
@@ -174,7 +184,7 @@ class VidUpdate extends React.Component{
                     <label htmlFor="file" className="newstudent-content-input">{this.uploaded===0 ? this.isFilein===false ? "동영상 추가" : this.vid['name'] : this.uploaded+"%"}</label>
                     <input value={this.time} onChange={this.handleChange} name="time" className="newstudent-content-input" placeholder="동영상 시간"/>
                     <input value={this.subject} onChange={this.handleChange} name="subject" className="newstudent-content-input" placeholder="동영상 관련 과목"/>
-                    <DropDown placeholder="동영상 활용 학년" option={store.schoolyear} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
+                    <input value={this.grade} onChange={this.handleChange} name="grade" className="newstudent-content-input" placeholder="동영상 활용 학년"/>
                     <DropDown placeholder="동영상 그룹 지정" option={store.infgroup} className="newstudent-content-dropdown" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                     <div className="newstudent-content-btn-container">
                         <div className="newstudent-content-btn" onClick={() => this.cancle()}>취소</div>

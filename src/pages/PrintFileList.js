@@ -99,7 +99,7 @@ class PrintFileList extends React.Component{
                             <DropDown placeholder="과목" option={store.subject} className="file-header-dropdown" classNamePrefix="react-select" onChange={this.subjectChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                             <DropDown placeholder="학년" option={store.schoolyear} className="file-header-dropdown" classNamePrefix="react-select" onChange={this.schoolyearChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
                             <DropDown placeholder="그룹" option={store.infgroup} className="file-header-dropdown" classNamePrefix="react-select" onChange={this.groupChange} isClearable={this.isClearable} isSearchable={this.isSearchable}/>
-                            <div className="file-header-search-btn" onClick={() => store.findfile(this.subject, this.grade, this.group)}>검색</div>
+                            <div className="file-header-search-btn" onClick={() => store.findprintfile(this.subject, this.grade, this.group)}>검색</div>
                             <Link className="file-header-search-btn" to="/groups">그룹 관리</Link>
                         </div>
                         <div className="file-header-right">
