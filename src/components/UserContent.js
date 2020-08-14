@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Content.scss'
 
 const UserContent = ({name, username, email, can_access_1, can_access_2, can_access_3, can_save_1, can_save_3, remove, update}) => {
     return(
         <div className="usercontent-container">
-            <div className="usercontent-text">{name}</div>
+            <Link to={`/users/${username}`} className="usercontent-text">{name}</Link>
             <div className="usercontent-text">{username}</div>
             <div className="usercontent-text">{email}</div>
             <div className="usercontent-text">

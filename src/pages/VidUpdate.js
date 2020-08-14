@@ -52,7 +52,7 @@ class VidUpdate extends React.Component{
         var formData = new FormData()
         formData.append("name", this.name)
         formData.append("time", this.time)
-        formData.append("link", "")
+        formData.append("link", link)
         formData.append("subject", this.subject)
         formData.append("group", this.group)
         if(this.grade==="전체"){

@@ -23,6 +23,7 @@ import SavedVidDetail from './pages/SavedVidDetail'
 import PrintFileList from './pages/PrintFileList'
 import NewPrintFile from './pages/NewPrintFile'
 import PrintFileUpdate from './pages/PrintFileUpdate'
+import UserInfo from './pages/UserInfo'
  
 class App extends React.Component{
 	render(){
@@ -36,6 +37,7 @@ class App extends React.Component{
 					<Route exact path="/account/login" component={Login}/>
 					<Route exact path="/users" component={UserList}/>
 					<Route exact path="/users/:username/update" component={UserUpdate}/>
+					<Route exact path="/users/:username" component={UserInfo}/>
 					<Route exact path="/inf" component={Inf}/>
 					<Route exact path="/groups" component={InfGroupList}/>
 					<Route exact path="/inf/vid" component={VidList}/>
