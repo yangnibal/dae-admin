@@ -148,6 +148,9 @@
                     font-size: 1.2rem;
                     font-weight: bold;
                     margin-bottom: 1.3rem;
+                    &:nth-child(2){
+                        width: 200px;
+                    }
                 }
             }
             .userinfo-top-text{
@@ -162,6 +165,9 @@
                     color: #a6a6a6;
                     font-weight: normal;
                     font-size: 1.2rem;
+                    &:nth-child(2){
+                        width: 200px;
+                    }
                 }
             }
         }
