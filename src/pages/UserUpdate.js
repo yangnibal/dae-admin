@@ -87,6 +87,9 @@ class UserUpdate extends React.Component{
                 this.email = res.data['email']
                 this.can_access_1 = res.data['can_access_1']
                 this.can_access_2 = res.data['can_access_2']
+                this.can_access_3 = res.data['can_access_3']
+                this.can_save_1 = res.data['can_save_1']
+                this.can_save_3 = res.data['can_save_3']
                 this.id = res.data['id']
             }
         })
